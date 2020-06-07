@@ -104,9 +104,4 @@ router.get('/authenticated', passport.authenticate('jwt', {session : false}), (r
   res.status(200).json({isAuthenticated : true, user: {username}});
 });
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 module.exports = router;
