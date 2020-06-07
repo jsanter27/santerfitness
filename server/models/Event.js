@@ -8,7 +8,7 @@ const EventSchema = new mongoose.Schema({
         instructor: String,
         day: {
             type: String,
-            enum: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+            enum: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
         },
         startTime: String,
         endTime: String

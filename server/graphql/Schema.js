@@ -1,15 +1,14 @@
 const GraphQLSchema = require('graphql').GraphQLSchema;
 const GraphQLObjectType = require('graphql').GraphQLObjectType;
 const GraphQLList = require('graphql').GraphQLList;
-const GraphQLObjectType = require('graphql').GraphQLObjectType;
 const GraphQLEnumType = require('graphql').GraphQLEnumType;
 const GraphQLInputObjectType = require('graphql').GraphQLInputObjectType;
 const GraphQLNonNull = require('graphql').GraphQLNonNull;
-const GraphQLNull = require('graphql').GraphQLNull;
-const GraphQLID = require('graphql').GraphQLID;
+//const GraphQLNull = require('graphql').GraphQLNull;
+//const GraphQLID = require('graphql').GraphQLID;
 const GraphQLString = require('graphql').GraphQLString;
-const GraphQLInt = require('graphql').GraphQLInt;
-const GraphQLFloat = require('graphql').GraphQLFloat;
+//const GraphQLInt = require('graphql').GraphQLInt;
+//const GraphQLFloat = require('graphql').GraphQLFloat;
 const GraphQLBoolean = require('graphql').GraphQLBoolean;
 const GraphQLDate = require('graphql-date');
 const UserModel = require('../models/User');
@@ -68,25 +67,25 @@ const dayEnum = new GraphQLEnumType({
     name: "dayEnum",
     values: {
         SUN: {
-            value: "Sun"
+            value: "SUN"
         },
         MON: {
-            value: "Mon"
+            value: "MON"
         },
         TUE: {
-            value: "Tue"
+            value: "TUE"
         },
         WED: {
-            value: "Wed"
+            value: "WED"
         },
         THU: {
-            value: "Thu"
+            value: "THU"
         },
         FRI: {
-            value: "Fri"
+            value: "FRI"
         },
         SAT: {
-            value: "Sat"
+            value: "SAT"
         }
     }
 });
