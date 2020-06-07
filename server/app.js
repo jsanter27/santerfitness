@@ -7,25 +7,31 @@ const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const graphqlHTTP = require('express-graphql');
 const bluebird = require('bluebird');
-const dotenv = require('dotenv');
 
-const schema = require('./graphql/Schemas');
+require('dotenv').config();
 
-dotenv.config();
 
-mongoose.connect(process.env.MONGO_URL, { promiseLibrary: bluebird, useNewUrlParser: true})
+const schema = require('./graphql/Schema');
+
+mongoose.connect(process.env.MONGO_URL, { promiseLibrary: bluebird, useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => console.log('Successfully connected to database...'))
     .catch((err) => console.error(err));
 
 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
 const app = express();
+
+app.set('view engine', 'ejs');
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 app.use('*', cors());
 app.use('/graphql', cors(), graphqlHTTP({
     schema: schema,
@@ -47,5 +53,5 @@ app.use(function(err, req, res, next) {
     res.render('error');
 });
 
-modules.export = app;
+module.exports = app;
 
