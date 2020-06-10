@@ -1,13 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import './main.css';
 import * as serviceWorker from './serviceWorker';
+import dotenv from 'dotenv';
+
+import HomeScreen from './components/HomeScreen';
+import ScheduleScreen from './components/ScheduleScreen';
+import MembershipsScreen from './components/MembershipsScreen';
+import ContactScreen from './components/ContactScreen';
+import AdminLoginScreen from './components/AdminLoginScreen';
+import AdminHomeScreen from './components/AdminHomeScreen';
+
+dotenv.config();
+
+const client = new ApolloClient({ uri: process.env.PROXY + "/graphql"});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <ApolloProvider client={client}>
+    <Router>
+      <div>
+        <Route exact path='/' component={HomeScreen} />
+        <Route path='/schedule' component={ScheduleScreen} />
+        <Route path='/memberships' component={MembershipsScreen} />
+        <Route path='/contact' component={ContactScreen} />
+        <Route path='/admin/login' component={AdminLoginScreen} />
+        <Route path='/admin' component={AdminHomeScreen} />
+      </div>
+    </Router>
+  </ApolloProvider>,
   document.getElementById('root')
 );
 
