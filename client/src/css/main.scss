@@ -1,0 +1,102 @@
+$theme-colors: (
+  "primary": #d4dde3,
+  "secondary": #829aab,
+  "light": #58f258,
+  "dark": #184166 
+);
+
+$body-color: "#d4dde3";
+
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+:root {
+  --sf-primary: #d4dde3;
+  --sf-secondary: #829aab;
+  --sf-light: #58f258;
+  --sf-dark: #184166;
+}
+
+body {
+  background-color: var(--sf-secondary);
+}
+
+.sf-footer-bottom{
+  background-color: var(--sf-dark);
+  color: white;
+  padding-top: 1em;
+  font-size: .75em;
+}
+
+.sf-footer-top{
+  background-color: var(--sf-primary);
+  color: var(--sf-dark);
+}
+
+.sf-footer-info{
+  margin-left: 0em;
+}
+
+.sf-footer-title{
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+.sf-hours-list{
+  margin-top: 0em;
+  margin-left: 2em;
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: black;
+}
+
+.sf-contact-info{
+  text-align: left;
+  margin-left: 2em;
+}
+
+.fitness-icons{
+  color: var(--sf-dark);
+}
+
+.contact-icons{
+  color: var(--sf-dark);
+  margin: .5em;
+}
+
+.sf-social-button{
+  margin-top: 1em;
+  margin-right: 1em;
+}
+
+.sf-home-row{
+  background-color: white;
+  margin-left: 0em;
+  margin-right: 0em;
+}
+
+.sf-home-card{
+  margin: 3em;
+  border-width: .4em;
+  border-radius: 1em;
+  overflow: hidden;
+}
+
+.sf-home-card-header{
+  text-align: center;
+}
+
+.sf-home-card-title{
+  color: var(--sf-dark);
+  font-size: 1em;
+}
+
+#sf-home-about-header{
+  color: var(--sf-dark);
+  margin-left: 1em;
+}
+
+#sf-home-about-body{
+  color: black;
+  margin-left: 1.75em;
+}

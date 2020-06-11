@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './main.css';
-import * as serviceWorker from './serviceWorker';
+import './css/main.css';
+import * as serviceWorker from './services/serviceWorker';
 import dotenv from 'dotenv';
 
 import HomeScreen from './components/HomeScreen';

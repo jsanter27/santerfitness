@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import { Carousel, Container, Row, Col } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Card } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { FaRunning } from 'react-icons/fa';
 import { GiWeightLiftingUp, GiMeditation } from 'react-icons/gi';
 
 import SFNavbar from './SFNavbar';
+import SFFooter from './SFFooter';
 
 const HomeScreen = () => {
 
@@ -17,7 +18,7 @@ const HomeScreen = () => {
     };
 
     return (
-        <Container fluid>
+        <Container fluid="lg">
             <SFNavbar />
             <Carousel activeIndex={slideIndex} onSelect={handleSelect}>
                 <Carousel.Item>
@@ -43,19 +44,51 @@ const HomeScreen = () => {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-            <Row>
+            <Row className="sf-home-row">
                 <IconContext.Provider value={{className:"fitness-icons", size:64}}>
                     <Col className="d-flex justify-content-center">
-                        <FaRunning />
+                        <Card className="sf-home-card text-center">
+                            <Card.Header className="sf-home-card-header"><FaRunning /></Card.Header>
+                            <Card.Body>
+                                <Card.Title className="sf-home-card-title d-flex justify-content-center">
+                                    Endurance
+                                </Card.Title>
+                            </Card.Body>
+                        </Card>
                     </Col>
                     <Col className="d-flex justify-content-center">
-                        <GiMeditation />
+                        <Card className="sf-home-card text-center">
+                            <Card.Header className="sf-home-card-header"><GiMeditation /></Card.Header>
+                            <Card.Body>
+                                <Card.Title className="sf-home-card-title d-flex justify-content-center">
+                                    Flexibility
+                                </Card.Title>
+                            </Card.Body>
+                        </Card>
                     </Col>
                     <Col className="d-flex justify-content-center">
-                        <GiWeightLiftingUp />
+                        <Card className="sf-home-card text-center">
+                            <Card.Header className="sf-home-card-header"><GiWeightLiftingUp /></Card.Header>
+                            <Card.Body>
+                                <Card.Title className="sf-home-card-title d-flex justify-content-center">
+                                    Strength
+                                </Card.Title>
+                            </Card.Body>
+                        </Card>
                     </Col>
                 </IconContext.Provider>
             </Row>
+            <Row className="sf-home-row">
+                <h3 id="sf-home-about-header">
+                    About
+                </h3>
+            </Row>
+            <Row className="sf-home-row">
+                <p id="sf-home-about-body">
+                    This is the about section.
+                </p>
+            </Row>
+            <SFFooter />
         </Container>
     );
 }

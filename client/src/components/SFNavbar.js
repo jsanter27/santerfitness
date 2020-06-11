@@ -3,12 +3,8 @@ import { Navbar, Nav, Image } from 'react-bootstrap';
 import {HouseDoorFill, CalendarDateFill, PeopleFill, EnvelopeFill} from 'react-bootstrap-icons';
 import {LIGHT} from '../constants/Colors';
 
-const SFNavbar = (props) => {
+const SFNavbar = () => {
 
-    let activeKey = "/schedule";
-    if (props.activeKey)
-        activeKey = props.activeKey;
-    
     return (
         <Navbar bg="dark" variant="primary">
             <Navbar.Brand href="/">
