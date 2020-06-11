@@ -10,7 +10,6 @@ import dotenv from 'dotenv';
 import HomeScreen from './components/HomeScreen';
 import ScheduleScreen from './components/ScheduleScreen';
 import MembershipsScreen from './components/MembershipsScreen';
-import ContactScreen from './components/ContactScreen';
 import AdminLoginScreen from './components/AdminLoginScreen';
 import AdminHomeScreen from './components/AdminHomeScreen';
 
@@ -25,7 +24,6 @@ ReactDOM.render(
         <Route exact path='/' component={HomeScreen} />
         <Route path='/schedule' component={ScheduleScreen} />
         <Route path='/memberships' component={MembershipsScreen} />
-        <Route path='/contact' component={ContactScreen} />
         <Route path='/admin/login' component={AdminLoginScreen} />
         <Route path='/admin' component={AdminHomeScreen} />
       </div>
