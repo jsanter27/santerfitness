@@ -10884,10 +10884,12 @@ body {
 }
 
 .sf-home-card {
-  margin: 3em;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 100%;
   border-width: .4em;
   border-radius: 1em;
-  overflow: hidden;
+  overflow-wrap: normal;
 }
 
 .sf-home-card-header {
@@ -10896,7 +10898,12 @@ body {
 
 .sf-home-card-title {
   color: var(--sf-dark);
-  font-size: 1em;
+  font-size: 1.5em;
+}
+
+.sf-home-card-text {
+  color: var(--sf-dark);
+  font-size: .85em;
 }
 
 #sf-home-about-header {

@@ -23,7 +23,7 @@ const SFNavbar = () => {
                     <Nav.Link href="/">Home <HouseDoorFill color={LIGHT} /></Nav.Link>
                     <Nav.Link href="/schedule">Schedule <CalendarDateFill color={LIGHT} /></Nav.Link>
                     <Nav.Link href="/memberships">Memberships <PeopleFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link href="/contact">Contact <EnvelopeFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link href="#sf-footer">Contact <EnvelopeFill color={LIGHT} /></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

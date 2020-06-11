@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import { Carousel, Container, Row, Col, Card } from 'react-bootstrap';
+import { Carousel, Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { FaRunning } from 'react-icons/fa';
 import { GiWeightLiftingUp, GiMeditation } from 'react-icons/gi';
@@ -50,37 +50,49 @@ const HomeScreen = () => {
                         <Card className="sf-home-card text-center">
                             <Card.Header className="sf-home-card-header"><FaRunning /></Card.Header>
                             <Card.Body>
-                                <Card.Title className="sf-home-card-title d-flex justify-content-center">
-                                    Endurance
+                                <Card.Title className="sf-home-card-title">
+                                    <b>Endurance</b>
                                 </Card.Title>
                             </Card.Body>
+                            <ListGroup  className="sf-home-card-text" variant="flush">
+                                <ListGroup.Item>Placeholder</ListGroup.Item>
+                                <ListGroup.Item>Placeholder</ListGroup.Item>
+                            </ListGroup>
                         </Card>
                     </Col>
                     <Col className="d-flex justify-content-center">
                         <Card className="sf-home-card text-center">
                             <Card.Header className="sf-home-card-header"><GiMeditation /></Card.Header>
                             <Card.Body>
-                                <Card.Title className="sf-home-card-title d-flex justify-content-center">
-                                    Flexibility
+                                <Card.Title className="sf-home-card-title">
+                                    <b>Health</b>
                                 </Card.Title>
                             </Card.Body>
+                            <ListGroup  className="sf-home-card-text" variant="flush">
+                                <ListGroup.Item>Placeholder</ListGroup.Item>
+                                <ListGroup.Item>Placeholder</ListGroup.Item>
+                            </ListGroup>
                         </Card>
                     </Col>
                     <Col className="d-flex justify-content-center">
                         <Card className="sf-home-card text-center">
                             <Card.Header className="sf-home-card-header"><GiWeightLiftingUp /></Card.Header>
                             <Card.Body>
-                                <Card.Title className="sf-home-card-title d-flex justify-content-center">
-                                    Strength
+                                <Card.Title className="sf-home-card-title">
+                                    <b>Strength</b>
                                 </Card.Title>
                             </Card.Body>
+                            <ListGroup  className="sf-home-card-text" variant="flush">
+                                <ListGroup.Item>Placeholder</ListGroup.Item>
+                                <ListGroup.Item>Placeholder</ListGroup.Item>
+                            </ListGroup>
                         </Card>
                     </Col>
                 </IconContext.Provider>
             </Row>
             <Row className="sf-home-row">
                 <h3 id="sf-home-about-header">
-                    About
+                    <b>About</b>
                 </h3>
             </Row>
             <Row className="sf-home-row">

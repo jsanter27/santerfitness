@@ -9,7 +9,7 @@ const SFFooter = () => {
 
     return(
         <IconContext.Provider value={{className:"contact-icons"}}>
-            <Col className="sf-footer">
+            <Col className="sf-footer" id="sf-footer">
                 <Row className="sf-footer-top">
                     <Col>
                         <Row className="sf-footer-title">
