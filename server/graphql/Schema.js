@@ -2,7 +2,7 @@ const GraphQLSchema = require('graphql').GraphQLSchema;
 const GraphQLObjectType = require('graphql').GraphQLObjectType;
 const GraphQLList = require('graphql').GraphQLList;
 const GraphQLEnumType = require('graphql').GraphQLEnumType;
-const GraphQLInputObjectType = require('graphql').GraphQLInputObjectType;
+//const GraphQLInputObjectType = require('graphql').GraphQLInputObjectType;
 const GraphQLNonNull = require('graphql').GraphQLNonNull;
 //const GraphQLNull = require('graphql').GraphQLNull;
 //const GraphQLID = require('graphql').GraphQLID;
@@ -63,73 +63,6 @@ const slideType = new GraphQLObjectType({
     }
 });
 
-const dayEnum = new GraphQLEnumType({
-    name: "dayEnum",
-    values: {
-        SUN: {
-            value: "SUN"
-        },
-        MON: {
-            value: "MON"
-        },
-        TUE: {
-            value: "TUE"
-        },
-        WED: {
-            value: "WED"
-        },
-        THU: {
-            value: "THU"
-        },
-        FRI: {
-            value: "FRI"
-        },
-        SAT: {
-            value: "SAT"
-        }
-    }
-});
-
-const classType = new GraphQLObjectType({
-    name: "classType",
-    fields: function () {
-        return {
-            instructor: {
-                type: GraphQLString
-            },
-            day: {
-                type: dayEnum
-            },
-            startTime: {
-                type: GraphQLString
-            },
-            endTime: {
-                type: GraphQLString
-            }
-        }
-    } 
-});
-
-const classInput = new GraphQLInputObjectType({
-    name: "classInput",
-    fields: function () {
-        return {
-            instructor: {
-                type: GraphQLNonNull(GraphQLString)
-            },
-            day: {
-                type: GraphQLNonNull(dayEnum)
-            },
-            startTime: {
-                type: GraphQLNonNull(GraphQLString)
-            },
-            endTime: {
-                type: GraphQLNonNull(GraphQLString)
-            }
-        }
-    }
-});
-
 const eventType = new GraphQLObjectType({
     name: "eventType",
     fields: function () {
@@ -143,8 +76,8 @@ const eventType = new GraphQLObjectType({
             description: {
                 type: GraphQLString
             },
-            times: {
-                type: GraphQLList(classType)
+            instructors: {
+                type: GraphQLList(GraphQLString)
             },
             lastModifiedBy: {
                 type: GraphQLString
@@ -356,7 +289,7 @@ const mutationType = new GraphQLObjectType({
                         type: new GraphQLNonNull(GraphQLString)
                     },
                     times: {
-                        type: new GraphQLList(classInput)
+                        type: new GraphQLList(GraphQLString)
                     },
                     lastModifiedBy: {
                         type: new GraphQLNonNull(GraphQLString)
@@ -385,7 +318,7 @@ const mutationType = new GraphQLObjectType({
                         type: new GraphQLNonNull(GraphQLString)
                     },
                     times: {
-                        type: new GraphQLList(classInput)
+                        type: new GraphQLList(GraphQLString)
                     },
                     lastModifiedBy: {
                         type: new GraphQLNonNull(GraphQLString)

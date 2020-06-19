@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import gql from 'graphql-tag';
-import { useQuery } from 'react-apollo-hooks';
+import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import SFNavbar from './SFNavbar';
@@ -14,7 +12,9 @@ const MembershipsScreen = () => {
         <Container fluid="lg">
             <SFNavbar />
             <Row className="sf-home-row2">
-                <h3 className="sf-home-header"><b>Memberships</b></h3>
+                <Col className="d-flex justify-content-center">
+                    <h3 className="sf-member-header"><b>Memberships</b></h3>    
+                </Col>
             </Row>
             <Row className="sf-home-row1">
                 <Col className="d-flex justify-content-center">
@@ -67,7 +67,9 @@ const MembershipsScreen = () => {
                 </Col>
             </Row>
             <Row className="sf-home-row2">
-                <h3 className="sf-home-header"><b>Free 7 Day Pass</b></h3>
+                <Col className="d-flex justify-content-center">
+                    <h3 className="sf-member-header"><b>Free 7 Day Trial</b></h3>    
+                </Col>
             </Row>
             <SFForm />
             <SFFooter />

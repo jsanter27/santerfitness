@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ApolloClient from 'apollo-boost';
+import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { createUploadLink } from 'apollo-upload-client';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './css/main.css';
 import * as serviceWorker from './services/serviceWorker';
-import dotenv from 'dotenv';
 
 import HomeScreen from './components/HomeScreen';
 import ScheduleScreen from './components/ScheduleScreen';
@@ -13,9 +14,11 @@ import MembershipsScreen from './components/MembershipsScreen';
 import AdminLoginScreen from './components/AdminLoginScreen';
 import AdminHomeScreen from './components/AdminHomeScreen';
 
-dotenv.config();
-
-const client = new ApolloClient({ uri: process.env.PROXY + "/graphql"});
+const link = createUploadLink({ uri: "http://localhost:5000/graphql" })
+const client = new ApolloClient({ 
+  link,
+  cache: new InMemoryCache()
+});
 
 ReactDOM.render(
   <ApolloProvider client={client}>

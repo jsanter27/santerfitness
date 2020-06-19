@@ -10,7 +10,6 @@ const SFCard = (props) => {
     let style=null;
     if (props.style)
         style=props.style;
-
     const renderIcon = () => {
         if (Icon){
             return (
