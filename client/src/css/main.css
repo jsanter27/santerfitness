@@ -10877,8 +10877,14 @@ body {
   margin-right: 1em;
 }
 
-.sf-home-row {
+.sf-home-row1 {
   background-color: white;
+  margin-left: 0em;
+  margin-right: 0em;
+}
+
+.sf-home-row2 {
+  background-color: var(--sf-primary);
   margin-left: 0em;
   margin-right: 0em;
 }
@@ -10887,13 +10893,21 @@ body {
   margin-top: 3em;
   margin-bottom: 3em;
   width: 100%;
-  border-width: .4em;
-  border-radius: 1em;
+  border-color: var(--sf-secondary);
+  border-width: .2em;
+  border-radius: .5em;
   overflow-wrap: normal;
 }
 
 .sf-home-card-header {
   text-align: center;
+  background-color: var(--sf-primary);
+  border-color: var(--sf-secondary);
+  border-width: 0em;
+}
+
+.sf-home-card-body {
+  background-color: var(--sf-primary);
 }
 
 .sf-home-card-title {
@@ -10906,13 +10920,28 @@ body {
   font-size: .85em;
 }
 
-#sf-home-about-header {
+.sf-home-header {
   color: var(--sf-dark);
   margin-left: 1em;
 }
 
-#sf-home-about-body {
+.sf-home-body {
   color: black;
   margin-left: 1.75em;
+}
+
+.sf-home-form {
+  margin: 1em;
+  color: var(--sf-dark);
+}
+
+.sf-home-form-button {
+  margin-top: 1.5em;
+  text-align: center;
+}
+
+.sf-home-form-footer {
+  margin-top: 1em;
+  text-align: center;
 }
 /*# sourceMappingURL=main.css.map */

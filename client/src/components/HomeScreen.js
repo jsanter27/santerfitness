@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import { Carousel, Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
+import { Carousel, Container, Row, Col } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { FaRunning } from 'react-icons/fa';
 import { GiWeightLiftingUp, GiMeditation } from 'react-icons/gi';
 
 import SFNavbar from './SFNavbar';
 import SFFooter from './SFFooter';
+import SFCard from './SFCard';
 
 const HomeScreen = () => {
-
-    const [slideIndex, setSlideIndex] = useState(0);
-
-    const handleSelect = (selectedIndex, e) => {
-        setSlideIndex(selectedIndex);
-    };
 
     return (
         <Container fluid="lg">
             <SFNavbar />
-            <Carousel activeIndex={slideIndex} onSelect={handleSelect}>
+            <Carousel>
                 <Carousel.Item>
                     <img 
                         className="d-block w-100"
@@ -44,59 +39,47 @@ const HomeScreen = () => {
                     </Carousel.Caption>
                 </Carousel.Item>
             </Carousel>
-            <Row className="sf-home-row">
+            <Row className="sf-home-row1">
                 <IconContext.Provider value={{className:"fitness-icons", size:64}}>
                     <Col className="d-flex justify-content-center">
-                        <Card className="sf-home-card text-center">
-                            <Card.Header className="sf-home-card-header"><FaRunning /></Card.Header>
-                            <Card.Body>
-                                <Card.Title className="sf-home-card-title">
-                                    <b>Endurance</b>
-                                </Card.Title>
-                            </Card.Body>
-                            <ListGroup  className="sf-home-card-text" variant="flush">
-                                <ListGroup.Item>Placeholder</ListGroup.Item>
-                                <ListGroup.Item>Placeholder</ListGroup.Item>
-                            </ListGroup>
-                        </Card>
+                        <SFCard
+                            icon={FaRunning}
+                            title="Endurance"
+                            items={[
+                                "Placeholder 1", 
+                                "Placeholder 2"
+                            ]}
+                        />
                     </Col>
                     <Col className="d-flex justify-content-center">
-                        <Card className="sf-home-card text-center">
-                            <Card.Header className="sf-home-card-header"><GiMeditation /></Card.Header>
-                            <Card.Body>
-                                <Card.Title className="sf-home-card-title">
-                                    <b>Health</b>
-                                </Card.Title>
-                            </Card.Body>
-                            <ListGroup  className="sf-home-card-text" variant="flush">
-                                <ListGroup.Item>Placeholder</ListGroup.Item>
-                                <ListGroup.Item>Placeholder</ListGroup.Item>
-                            </ListGroup>
-                        </Card>
+                        <SFCard
+                            icon={GiMeditation}
+                            title="Health"
+                            items={[
+                                "Placeholder 1", 
+                                "Placeholder 2"
+                            ]}
+                        />
                     </Col>
                     <Col className="d-flex justify-content-center">
-                        <Card className="sf-home-card text-center">
-                            <Card.Header className="sf-home-card-header"><GiWeightLiftingUp /></Card.Header>
-                            <Card.Body>
-                                <Card.Title className="sf-home-card-title">
-                                    <b>Strength</b>
-                                </Card.Title>
-                            </Card.Body>
-                            <ListGroup  className="sf-home-card-text" variant="flush">
-                                <ListGroup.Item>Placeholder</ListGroup.Item>
-                                <ListGroup.Item>Placeholder</ListGroup.Item>
-                            </ListGroup>
-                        </Card>
+                        <SFCard
+                            icon={GiWeightLiftingUp}
+                            title="Strength"
+                            items={[
+                                "Placeholder 1", 
+                                "Placeholder 2"
+                            ]}
+                        />
                     </Col>
                 </IconContext.Provider>
             </Row>
-            <Row className="sf-home-row">
-                <h3 id="sf-home-about-header">
+            <Row className="sf-home-row1">
+                <h3 className="sf-home-header">
                     <b>About</b>
                 </h3>
             </Row>
-            <Row className="sf-home-row">
-                <p id="sf-home-about-body">
+            <Row className="sf-home-row1">
+                <p className="sf-home-body">
                     This is the about section.
                 </p>
             </Row>

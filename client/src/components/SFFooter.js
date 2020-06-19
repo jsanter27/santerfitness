@@ -50,7 +50,7 @@ const SFFooter = () => {
                                 Santer Fitness<br/>
                                 3 Locust Street<br/>
                                 Washingtonville, NY 10992<br/><br/>
-                                (845) 496 9188<AiFillPhone /><br/><br/>
+                                (845) 496-9188<AiFillPhone /><br/><br/>
                                 info@santerfitness.com<GrMail /><br/>
                             </p>
                         </Row>
@@ -58,11 +58,11 @@ const SFFooter = () => {
                             <h5><b>Social Media</b></h5>
                         </Row>
                         <Row className="d-flex justify-content-start">
-                            <p className="sf-contact-info">
+                            <div className="sf-contact-info">
                                 <SocialIcon className="sf-social-button" url="https://www.facebook.com/Santer-Fitness-227206090662880/?ref_type=bookmark"/>
                                 <SocialIcon className="sf-social-button" url="https://twitter.com/santerfitness" />
                                 <SocialIcon className="sf-social-button" url="https://www.instagram.com/santerfitness/" /> 
-                            </p>
+                            </div>
                         </Row>
                     </Col>
                 </Row>

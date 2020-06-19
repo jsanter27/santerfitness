@@ -35,10 +35,10 @@ const SFNavbar = () => {
             <Navbar.Toggle />
             <Navbar.Collapse>
                 <Nav className="justify-content-end" style={{width:"100%"}}>
-                    <Nav.Link onClick={goToHome}>Home <HouseDoorFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link onClick={goToSchedule}>Schedule <CalendarDateFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link onClick={goToMemberships}>Memberships <PeopleFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link href="#sf-footer">Contact <EnvelopeFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link onClick={goToHome}><b>Home</b> <HouseDoorFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link onClick={goToSchedule}><b>Schedule</b> <CalendarDateFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link onClick={goToMemberships}><b>Memberships</b> <PeopleFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link href="#sf-footer"><b>Contact</b> <EnvelopeFill color={LIGHT} /></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
