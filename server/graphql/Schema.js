@@ -12,7 +12,7 @@ const GraphQLString = require('graphql').GraphQLString;
 const GraphQLBoolean = require('graphql').GraphQLBoolean;
 const GraphQLDate = require('graphql-date');
 const UserModel = require('../models/User');
-const SlideModel = require('../models/Slide');
+const PictureModel = require('../models/Picture');
 const EventModel = require('../models/Event');
 const AlertModel = require('../models/Alert');
 const bcrypt = require('bcrypt');
@@ -40,21 +40,18 @@ const userType = new GraphQLObjectType({
     }
 });
 
-const slideType = new GraphQLObjectType({
-    name: "slideType",
+const pictureType = new GraphQLObjectType({
+    name: "pictureType",
     fields: function () {
         return {
             _id: {
                 type: GraphQLString
             },
-            header: {
+            url: {
                 type: GraphQLString
             },
-            body: {
-                type: GraphQLString
-            },
-            backgroundColor: {
-                type: GraphQLString
+            isSchedule: {
+                type: GraphQLBoolean
             },
             lastModifiedBy: {
                 type: GraphQLString
@@ -126,13 +123,23 @@ const queryType = new GraphQLObjectType({
                 }
             },
             getAllSlides: {
-                type: new GraphQLList(slideType),
+                type: new GraphQLList(pictureType),
                 resolve: function () {
-                    const slides = SlideModel.find().exec();
+                    const slides = PictureModel.find({ isSchedule: false }).exec();
                     if (!slides){
                         return null;
                     }
                     return slides;
+                }
+            },
+            getSchedule: {
+                type: pictureType,
+                resolve: function () {
+                    const schedule = PictureModel.findOne({ isSchedule: true }).exec();
+                    if (schedule){
+                        return null;
+                    }
+                    return schedule;
                 }
             },
             getAllEvents: {
@@ -204,79 +211,6 @@ const mutationType = new GraphQLObjectType({
                         });
                         return user;
                     });
-                }
-            },
-            addSlide: {
-                type: slideType,
-                args: {
-                    header: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    body: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    backgroundColor: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    lastModifiedBy: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    }
-                },
-                resolve: function (root, params) {
-                    const slideModel = new SlideModel(params);
-                    const newSlide = slideModel.save();
-                    if (!newSlide) {
-                        throw new Error("Could not save Slide");
-                    }
-                    return newSlide;
-                }
-            },
-            updateSlide: {
-                type: slideType,
-                args: {
-                    id: {
-                        name: 'id',
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    header: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    body: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    backgroundColor: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    },
-                    lastModifiedBy: {
-                        type: new GraphQLNonNull(GraphQLString)
-                    }
-                },
-                resolve: function (root, params) {
-                    return SlideModel.findByIdAndUpdate(params.id, {
-                        header: params.header,
-                        body: params.body,
-                        backgroundColor: params.backgroundColor,
-                        lastModifiedBy: params.lastModifiedBy
-                    }, (err) => {
-                        if (err)
-                            throw new Error('Could not update Slide');
-                    });
-                }
-            },
-            removeSlide: {
-                type: slideType,
-                args: {
-                    id: {
-                        name: 'id',
-                        type: new GraphQLNonNull(GraphQLString)
-                    }
-                },
-                resolve: function (root, params) {
-                    const removedSlide = SlideModel.findByIdAndRemove(params.id).exec();
-                    if (!removedSlide) {
-                        throw new Error("Could not remove Slide");
-                    }
-                    return removedSlide;
                 }
             },
             addEvent: {
