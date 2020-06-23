@@ -14,31 +14,33 @@ const SFFooter = () => {
                 <Row className="sf-footer-top">
                     <Col>
                         <Row className="sf-footer-title1">
-                            <h5><b>Hours</b></h5>
+                            <Col className="d-flex justify-content-center">
+                                <h5><b>Hours</b></h5>
+                            </Col>
                         </Row>
                         <Row>
-                            <Col className="d-flex justify-content-start">
+                            <Col className="d-flex justify-content-center">
                                 <ListGroup className="sf-hours-list">
-                                    <ListGroup.Item>
-                                        <b>Sun:</b> 7:00am - 5:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Sunday</b><br/>7:00am - 5:00pm
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <b>Mon:</b> 5:00am - 10:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Monday</b><br/>5:00am - 10:00pm
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <b>Tue:</b> 5:00am - 10:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Tueday</b><br/>5:00am - 10:00pm
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <b>Wed:</b> 5:00am - 10:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Wednesday</b><br/>5:00am - 10:00pm
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <b>Thu:</b> 5:00am - 10:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Thursday</b><br/>5:00am - 10:00pm
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <b>Fri:</b> 5:00am - 9:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Friday</b><br/>5:00am - 9:00pm
                                     </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        <b>Sat:</b> 7:00am - 7:00pm
+                                    <ListGroup.Item className="sf-hours-list-item">
+                                        <b>Saturday</b><br/>7:00am - 7:00pm
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Col>

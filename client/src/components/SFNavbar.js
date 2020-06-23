@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Navbar, Nav, Image } from 'react-bootstrap';
+import { Navbar, Nav, Image, Row, Col } from 'react-bootstrap';
 import {HouseDoorFill, CalendarDateFill, PeopleFill, EnvelopeFill, List} from 'react-bootstrap-icons';
 import {LIGHT} from '../constants/Colors';
 
@@ -24,16 +24,22 @@ const SFNavbar = () => {
 
     return (
         <Navbar bg="dark" variant="primary" expand="sm" expanded={expanded}>
-            <Navbar.Brand>
-                <Image
-                    src="/sf_logo1.jpg"
-                    className="sf-logo-img mr-auto"
-                    alt="Santer Fitness Logo"
-                    rounded
-                    onClick={goToHome}
-                />
-                <Navbar.Toggle className="sf-navbar-brand" onClick={() => setExpanded(expanded ? false : "expanded")}><List color={LIGHT} size="1.5em"/></Navbar.Toggle>
-            </Navbar.Brand>
+            <Row>
+                <Col>
+                    <Navbar.Brand>
+                        <Image
+                            src="/sf_logo1.jpg"
+                            className="sf-logo-img"
+                            alt="Santer Fitness Logo"
+                            rounded
+                            onClick={goToHome}
+                        />
+                    </Navbar.Brand>
+                </Col>
+                <Col className="sf-nav-toggle">
+                    <Navbar.Toggle className="sf-navbar-brand" onClick={() => setExpanded(expanded ? false : "expanded")}><List color={LIGHT} size="2.25em"/></Navbar.Toggle>
+                </Col>
+            </Row>
             <Navbar.Collapse>
                 <Nav className="justify-content-end" style={{width:"100%"}}>
                     <Nav.Link className="sf-nav-link" onClick={goToHome}><b>Home</b> <HouseDoorFill color={LIGHT} /></Nav.Link>

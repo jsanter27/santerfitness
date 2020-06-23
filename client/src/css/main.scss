@@ -22,17 +22,19 @@ body {
 }
 
 .sf-logo-img{
-  max-width: 60%;
+  max-width: 100%;
   height: auto;
+  cursor: pointer;
 }
 
 .sf-nav-link{
   text-align: center;
-  font-size: 1.5em;
+  font-size: 125%;
 }
 
-.sf-navbar-brand{
-  margin-left: auto;
+.sf-nav-toggle{
+  text-align: end;
+  vertical-align: text-bottom;
 }
 
 .sf-footer-bottom{
@@ -52,26 +54,35 @@ body {
 }
 
 .sf-footer-title1{
-  margin-left: 2em;
+  margin-left: -6em;
   margin-top: 1em;
+  margin-bottom: .5em;
 }
 
 .sf-footer-title2{
   margin-left: 0em;
   margin-top: 1em;
+  margin-bottom: .5em;
 }
 
 .sf-hours-list{
   margin-top: 0em;
-  margin-left: 2em;
+  margin-left: 0em;
   margin-bottom: 1em;
-  font-size: 1em;
-  color: black;
+  margin-right: 0em;
+  font-size: .8em;
+  width: fit-content;
+  color: var(--sf-dark);
+}
+
+.sf-hours-list-item{
+  text-align: center;
 }
 
 .sf-contact-info{
   text-align: left;
   margin-left: 1em;
+  font-size: .8em;
 }
 
 .fitness-icons{
@@ -103,7 +114,7 @@ body {
 .sf-home-card{
   margin-top: 3em;
   margin-bottom: 3em;
-  width: 75%;
+  width: 100%;
   border-color: var(--sf-secondary);
   border-width: .2em;
   border-radius: .5em;
