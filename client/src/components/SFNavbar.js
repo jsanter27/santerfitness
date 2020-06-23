@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Navbar, Nav, Image } from 'react-bootstrap';
-import {HouseDoorFill, CalendarDateFill, PeopleFill, EnvelopeFill} from 'react-bootstrap-icons';
+import {HouseDoorFill, CalendarDateFill, PeopleFill, EnvelopeFill, List} from 'react-bootstrap-icons';
 import {LIGHT} from '../constants/Colors';
 
 const SFNavbar = () => {
+
+    const [expanded, setExpanded] = useState(false);
 
     const history = useHistory();
 
@@ -21,24 +23,23 @@ const SFNavbar = () => {
     }
 
     return (
-        <Navbar bg="dark" variant="primary">
-            <Navbar.Brand href="/">
-                <Image 
+        <Navbar bg="dark" variant="primary" expand="sm" expanded={expanded}>
+            <Navbar.Brand>
+                <Image
                     src="/sf_logo1.jpg"
-                    width="180"
-                    height="50"
-                    className="d-inline-block align-top"
+                    className="sf-logo-img mr-auto"
                     alt="Santer Fitness Logo"
                     rounded
+                    onClick={goToHome}
                 />
+                <Navbar.Toggle className="sf-navbar-brand" onClick={() => setExpanded(expanded ? false : "expanded")}><List color={LIGHT} size="1.5em"/></Navbar.Toggle>
             </Navbar.Brand>
-            <Navbar.Toggle />
             <Navbar.Collapse>
                 <Nav className="justify-content-end" style={{width:"100%"}}>
-                    <Nav.Link onClick={goToHome}><b>Home</b> <HouseDoorFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link onClick={goToSchedule}><b>Schedule</b> <CalendarDateFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link onClick={goToMemberships}><b>Memberships</b> <PeopleFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link href="#sf-footer"><b>Contact</b> <EnvelopeFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" onClick={goToHome}><b>Home</b> <HouseDoorFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" onClick={goToSchedule}><b>Classes</b> <CalendarDateFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" onClick={goToMemberships}><b>Memberships</b> <PeopleFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" href="#sf-footer"><b>Contact</b> <EnvelopeFill color={LIGHT} /></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

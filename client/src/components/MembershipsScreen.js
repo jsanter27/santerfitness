@@ -9,7 +9,7 @@ import SFForm from './SFForm';
 const MembershipsScreen = () => {
 
     return (
-        <Container fluid="lg">
+        <div>
             <SFNavbar />
             <Row className="sf-home-row2">
                 <Col className="d-flex justify-content-center">
@@ -73,7 +73,7 @@ const MembershipsScreen = () => {
             </Row>
             <SFForm />
             <SFFooter />
-        </Container>
+        </div>
     );
 }
 

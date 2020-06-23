@@ -21,6 +21,20 @@ body {
   background-color: var(--sf-secondary);
 }
 
+.sf-logo-img{
+  max-width: 60%;
+  height: auto;
+}
+
+.sf-nav-link{
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.sf-navbar-brand{
+  margin-left: auto;
+}
+
 .sf-footer-bottom{
   background-color: var(--sf-dark);
   color: white;
@@ -37,8 +51,13 @@ body {
   margin-left: 0em;
 }
 
-.sf-footer-title{
-  margin-left: 1em;
+.sf-footer-title1{
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+.sf-footer-title2{
+  margin-left: 0em;
   margin-top: 1em;
 }
 
@@ -52,7 +71,7 @@ body {
 
 .sf-contact-info{
   text-align: left;
-  margin-left: 2em;
+  margin-left: 1em;
 }
 
 .fitness-icons{
@@ -61,7 +80,7 @@ body {
 
 .contact-icons{
   color: var(--sf-dark);
-  margin: .5em;
+  margin: 0em;
 }
 
 .sf-social-button{
@@ -84,7 +103,7 @@ body {
 .sf-home-card{
   margin-top: 3em;
   margin-bottom: 3em;
-  width: 100%;
+  width: 75%;
   border-color: var(--sf-secondary);
   border-width: .2em;
   border-radius: .5em;
@@ -117,6 +136,11 @@ body {
   margin-left: 1em;
 }
 
+.sf-home-subheader{
+  color: var(--sf-light);
+  margin-left: 1.8em;
+}
+
 .sf-member-header{
   color: var(--sf-dark);
   margin-top: .2em;
@@ -125,7 +149,7 @@ body {
 
 
 .sf-home-body{
-  color: black;
+  color: var(--sf-dark);
   margin-left: 1.75em;
 }
 
@@ -142,4 +166,37 @@ body {
 .sf-home-form-footer{
   margin-top: 1em;
   text-align: center;
+}
+
+.sf-home-alert{
+  border-radius: 0em;
+  margin-bottom: 0em;
+}
+
+.sf-home-slide{
+  width: auto;
+  height: auto;
+}
+
+.sf-schedule-img{
+  padding: 1em;
+  margin-top: 2em;
+  margin-left: 1em;
+  margin-right: 1em;
+  margin-bottom: 2em;
+  border-style: solid;
+  border-color: var(--sf-primary);
+  border-width: .5em;
+  border-radius: .5em;
+}
+
+.sf-loading-text{
+  color: var(--sf-dark);
+  margin-top: 5em;
+  text-align: center;
+}
+
+.sf-schedule-button{
+  width: 50%;
+  margin-bottom: 2em;
 }

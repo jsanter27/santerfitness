@@ -16,6 +16,9 @@ const PictureModel = require('../models/Picture');
 const EventModel = require('../models/Event');
 const AlertModel = require('../models/Alert');
 const bcrypt = require('bcrypt');
+const s3 = require('../services/uploads').s3;
+
+require('dotenv').config();
 
 const userType = new GraphQLObjectType({
     name: "userType",
@@ -45,6 +48,9 @@ const pictureType = new GraphQLObjectType({
     fields: function () {
         return {
             _id: {
+                type: GraphQLString
+            },
+            key: {
                 type: GraphQLString
             },
             url: {
@@ -96,6 +102,9 @@ const alertType = new GraphQLObjectType({
             isActive: {
                 type: GraphQLBoolean
             },
+            isEmergency: {
+                type: GraphQLBoolean
+            },
             lastModifiedBy: {
                 type: GraphQLString
             }
@@ -136,7 +145,7 @@ const queryType = new GraphQLObjectType({
                 type: pictureType,
                 resolve: function () {
                     const schedule = PictureModel.findOne({ isSchedule: true }).exec();
-                    if (schedule){
+                    if (!schedule){
                         return null;
                     }
                     return schedule;
@@ -213,6 +222,45 @@ const mutationType = new GraphQLObjectType({
                     });
                 }
             },
+            removeSlide: {
+                type: pictureType,
+                args: {
+                    key: {
+                        type: new GraphQLNonNull(GraphQLString)
+                    }
+                },
+                resolve: function (root, params) {
+                    PictureModel.findOneAndRemove({key: params.key}, (err, removedSlide) => {
+                        if (err) {
+                            throw new Error("Could not delete slide from database");
+                        }
+                        if (removedSlide) {
+                            s3.deleteObject({Bucket: process.env.S3_BUCKET_NAME, Key: removedSlide.key}, (err, data) => {
+                                if (err)
+                                    throw new Error("Could not delete slide from cloud");
+                            });
+                        }
+                        return removedSlide;
+                    });
+                }
+            },
+            removeSchedule: {
+                type: pictureType,
+                resolve: function (root, params) {
+                    PictureModel.findOneAndRemove({isSchedule: true}, (err, removedSchedule) => {
+                        if (err) {
+                            throw new Error("Could not delete schedule from database");
+                        }
+                        if (removedSchedule) {
+                            s3.deleteObject({Bucket: process.env.S3_BUCKET_NAME, Key: removedSchedule.key}, (err, data) => {
+                                if (err)
+                                    throw new Error("Could not delete schedule from cloud");
+                            });
+                        }
+                        return removedSchedule;
+                    });
+                }
+            },
             addEvent: {
                 type: eventType,
                 args: {
@@ -222,7 +270,7 @@ const mutationType = new GraphQLObjectType({
                     description: {
                         type: new GraphQLNonNull(GraphQLString)
                     },
-                    times: {
+                    instructors: {
                         type: new GraphQLList(GraphQLString)
                     },
                     lastModifiedBy: {
@@ -251,7 +299,7 @@ const mutationType = new GraphQLObjectType({
                     description: {
                         type: new GraphQLNonNull(GraphQLString)
                     },
-                    times: {
+                    instructors: {
                         type: new GraphQLList(GraphQLString)
                     },
                     lastModifiedBy: {
@@ -295,6 +343,9 @@ const mutationType = new GraphQLObjectType({
                     isActive: {
                         type: new GraphQLNonNull(GraphQLBoolean)
                     },
+                    isEmergency: {
+                        type: new GraphQLNonNull(GraphQLBoolean)
+                    },
                     lastModifiedBy: {
                         type: new GraphQLNonNull(GraphQLString)
                     }
@@ -319,6 +370,9 @@ const mutationType = new GraphQLObjectType({
                         type: new GraphQLNonNull(GraphQLString)
                     },
                     isActive: {
+                        type: new GraphQLNonNull(GraphQLBoolean)
+                    },
+                    isEmergency: {
                         type: new GraphQLNonNull(GraphQLBoolean)
                     },
                     lastModifiedBy: {

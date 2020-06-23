@@ -4,6 +4,7 @@ const AlertSchema = new mongoose.Schema({
     id: String,
     message: String,
     isActive: Boolean,
+    isEmergency: Boolean,
     lastModifiedBy: String
 });
 

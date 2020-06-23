@@ -32,11 +32,11 @@ const SFForm = () => {
             <Form className="sf-home-form" onSubmit={handleSubmit}>
                 <Form.Group controlId="firstName">
                     <Form.Label>First Name:</Form.Label>
-                    <Form.Control name="firstName" type="text" placeholder="Enter first name" onChange={handleChange}/>
+                    <Form.Control name="firstName" type="text" placeholder="Ex. John" onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="lastName">
                     <Form.Label>Last Name:</Form.Label>
-                    <Form.Control name="lastName" type="text" placeholder="Enter last name" onChange={handleChange}/>
+                    <Form.Control name="lastName" type="text" placeholder="Ex. Smith" onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="email">
                     <Form.Label>Email Address:</Form.Label>

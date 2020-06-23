@@ -18,7 +18,7 @@ router.post('/slide', [authentication, singleUpload], (req, res) => {
         if (err){
             res.status(500).json({message : {msgBody : "Database error", msgError: true}});
         }
-        res.status(201).json({message : {msgBody : "Slide added to database", msgError: true}});
+        res.status(201).json({message : {msgBody : "Slide added to database", msgError: false}});
     });
 });
 
@@ -27,11 +27,11 @@ router.post('/schedule', [authentication, singleUpload], (req, res) => {
     const { location, key } = req.file;
     Picture.findOneAndDelete({ isSchedule: true }, (err, oldSchedule) => {
         if (err){
-            res.status(500).json({message : {msgBody : "Could not delete old image", msgError: false}});
+            res.status(500).json({message : {msgBody : "Could not delete old image", msgError: true}});
         }
         if (oldSchedule){
             s3.deleteObject({Bucket: process.env.S3_BUCKET_NAME, Key: oldSchedule.key}, (err, data) => {
-                let newSchedule = new Picture({key, url: req.file.location, isSchedule: true, lastModifiedBy: username});
+                let newSchedule = new Picture({key, url: location, isSchedule: true, lastModifiedBy: username});
                 newSchedule.save((err) => {
                     if (err){
                         res.status(500).json({message : {msgBody : "Database error", msgError: true}});
