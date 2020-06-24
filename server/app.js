@@ -21,6 +21,7 @@ mongoose.connect(process.env.MONGO_URL, { promiseLibrary: bluebird, useNewUrlPar
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const imagesRouter = require('./routes/upload');
+const formsRouter = require('./routes/forms');
 
 const app = express();
 
@@ -34,6 +35,7 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/upload', imagesRouter);
+app.use('/forms', formsRouter);
 app.use('*', cors());
 
 app.use('/graphql', cors(), graphqlHTTP({

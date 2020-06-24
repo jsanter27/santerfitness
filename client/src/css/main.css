@@ -10837,7 +10837,10 @@ body {
 
 .sf-nav-link {
   text-align: center;
-  font-size: 125%;
+  font-size: 1.2em;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .sf-nav-toggle {
@@ -10862,7 +10865,7 @@ body {
 }
 
 .sf-footer-title1 {
-  margin-left: -6em;
+  margin-left: -1em;
   margin-top: 1em;
   margin-bottom: .5em;
 }
@@ -10879,9 +10882,7 @@ body {
   margin-bottom: 1em;
   margin-right: 0em;
   font-size: .8em;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
   color: var(--sf-dark);
 }
 
@@ -10928,7 +10929,6 @@ body {
   border-color: var(--sf-secondary);
   border-width: .2em;
   border-radius: .5em;
-  overflow-wrap: normal;
 }
 
 .sf-home-card-header {
@@ -10950,16 +10950,17 @@ body {
 .sf-home-card-text {
   color: var(--sf-dark);
   font-size: .85em;
+  height: 100%;
 }
 
 .sf-home-header {
   color: var(--sf-dark);
-  margin-left: 1em;
+  margin-left: .5em;
 }
 
 .sf-home-subheader {
   color: var(--sf-light);
-  margin-left: 1.8em;
+  margin-left: 1em;
 }
 
 .sf-member-header {
@@ -10970,7 +10971,7 @@ body {
 
 .sf-home-body {
   color: var(--sf-dark);
-  margin-left: 1.75em;
+  margin-left: 1em;
 }
 
 .sf-home-form {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import FileSaver from 'file-saver';
 import { Row, Col, Image, Button } from 'react-bootstrap';
 
 import SFNavbar from './SFNavbar';
@@ -50,9 +49,13 @@ const ScheduleScreen = () => {
         events: events.data.getAllEvents
     }
 
-    const handleDownload = () => {
-        FileSaver.saveAs(data.schedule.url, "schedule.jpg");
-    };
+    /* const handleDownload = () => {
+        let element = document.createElement("a");
+        let file = new Blob([data.schedule.url], { type: "image/*"});
+        element.href = URL.createObjectURL(file);
+        element.download = "schedule.jpg";
+        element.click();
+    }; */
 
     return (
         <div>
@@ -76,11 +79,11 @@ const ScheduleScreen = () => {
                     }
                 </Col>
             </Row>
-            <Row className="sf-home-row1">
+            {/* <Row className="sf-home-row1">
                 <Col className="d-flex justify-content-center">
                     <Button className="sf-schedule-button" block size="lg" variant="dark" onClick={handleDownload}>Download Schedule</Button>
                 </Col>
-            </Row>
+            </Row> */}
             <Row className="sf-home-row2">
                 <Col className="d-flex justify-content-center">
                     <h3 className="sf-member-header"><b>Class Info</b></h3>    

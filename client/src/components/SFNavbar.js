@@ -25,7 +25,7 @@ const SFNavbar = () => {
     return (
         <Navbar bg="dark" variant="primary" expand="sm" expanded={expanded}>
             <Row>
-                <Col>
+                <Col xs={8}>
                     <Navbar.Brand>
                         <Image
                             src="/sf_logo1.jpg"

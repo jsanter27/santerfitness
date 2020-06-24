@@ -53,7 +53,7 @@ const SFForm = () => {
                 </div>
                 <Form.Text className="sf-home-form-footer">
                     After submitting, check in at the front desk by giving your name and showing an ID.<br/>
-                    All fields required.
+                    <b>All fields required.</b>
                 </Form.Text>
             </Form>
         </Row>

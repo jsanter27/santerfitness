@@ -56,7 +56,7 @@ const MembershipsScreen = () => {
                 </Col>
                 <Col className="d-flex justify-content-center">
                     <SFCard
-                        title="Family (up to 4 members)"
+                        title="Family (4 members)"
                         items={[
                             "Free Group Exercise",
                             "Free Private Fitness Orientation",

@@ -14,12 +14,12 @@ const SFFooter = () => {
                 <Row className="sf-footer-top">
                     <Col>
                         <Row className="sf-footer-title1">
-                            <Col className="d-flex justify-content-center">
+                            <Col className="d-flex justify-content-start">
                                 <h5><b>Hours</b></h5>
                             </Col>
                         </Row>
                         <Row>
-                            <Col className="d-flex justify-content-center">
+                            <Col className="d-flex justify-content-start">
                                 <ListGroup className="sf-hours-list">
                                     <ListGroup.Item className="sf-hours-list-item">
                                         <b>Sunday</b><br/>7:00am - 5:00pm
