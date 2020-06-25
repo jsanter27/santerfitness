@@ -31,7 +31,7 @@ const GET_ACTIVE_ALERTS = gql`
     }
 `;
 
-const HomeScreen = () => {
+const HomeScreen = (props) => {
 
     const useHomeScreenQueries = () => {
         const slides = useQuery(GET_SLIDES);
@@ -60,7 +60,7 @@ const HomeScreen = () => {
 
     return (
         <div>
-            <SFNavbar />
+            <SFNavbar admin={props.admin} />
             {data.alerts.map((alert, index) => 
                 <SFAlert key={index} message={alert.message} isEmergency={alert.isEmergency} />
             )}

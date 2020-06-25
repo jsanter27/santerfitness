@@ -28,7 +28,7 @@ const GET_EVENTS = gql`
 `;
 
 
-const ScheduleScreen = () => {
+const ScheduleScreen = (props) => {
 
     const useScheduleQueries = () => {
         const schedule = useQuery(GET_SCHEDULE);
@@ -59,7 +59,7 @@ const ScheduleScreen = () => {
 
     return (
         <div>
-            <SFNavbar />
+            <SFNavbar admin={props.admin} />
             <Row className="sf-home-row2">
                 <Col className="d-flex justify-content-center">
                     <h3 className="sf-member-header"><b>Class Schedule</b></h3>    

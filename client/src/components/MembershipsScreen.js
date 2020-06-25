@@ -6,11 +6,11 @@ import SFFooter from './SFFooter';
 import SFCard from './SFCard';
 import SFForm from './SFForm';
 
-const MembershipsScreen = () => {
+const MembershipsScreen = (props) => {
 
     return (
         <div>
-            <SFNavbar />
+            <SFNavbar admin={props.admin} />
             <Row className="sf-home-row2">
                 <Col className="d-flex justify-content-center">
                     <h3 className="sf-member-header"><b>Memberships</b></h3>    

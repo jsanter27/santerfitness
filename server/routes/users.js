@@ -6,6 +6,7 @@ const passportConfig = require('../config/passport');
 const User = require('../models/User');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
@@ -102,6 +103,35 @@ router.get('/logout', passport.authenticate('jwt', {session : false}), (req, res
 router.get('/authenticated', passport.authenticate('jwt', {session : false}), (req, res) => {
   const {username} = req.user;
   res.status(200).json({isAuthenticated : true, user: {username}});
+});
+
+router.post('/changepassword', (req, res) => {
+  const { username, password } = req.body;
+  User.findOne({ username }, (err, user) => {
+    if (!user){
+      res.status(400).json({message : {msgBody : "Account not found", msgError: true}});
+    }
+    else if (!user.resetPasswordToken || user.resetPasswordExpires < Date.now()) {
+      res.status(400).json({message : {msgBody : "Cannot change user's password at this time", msgError: true}});
+    }
+    else {
+      bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err){
+          res.status(500).json({message : {msgBody : "Could not hash new password", msgError: true}});
+        }
+        else{
+          user.updateOne({ password: hashedPassword, resetPasswordToken: null, resetPasswordExpires: null }, (err) => {
+            if (err) {
+              res.status(500).json({message : {msgBody : "Database error", msgError: true}});              
+            }
+            else {
+              res.status(200).json({message : {msgBody : "Successfully changed password", msgError: false}});
+            }
+          });
+        }
+      }); 
+    }
+  });
 });
 
 module.exports = router;
