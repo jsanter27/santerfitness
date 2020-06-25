@@ -38,7 +38,7 @@ const SFNavbar = (props) => {
     }
 
     return (
-        <Navbar bg="dark" variant="primary" expand="lg" expanded={expanded}>
+        <Navbar bg="dark" variant="primary" expand="sm" expanded={expanded}>
             <Row>
                 <Col xs={8}>
                     <Navbar.Brand>

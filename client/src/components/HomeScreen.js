@@ -36,21 +36,18 @@ const HomeScreen = (props) => {
     const useHomeScreenQueries = () => {
         const slides = useQuery(GET_SLIDES);
         const alerts = useQuery(GET_ACTIVE_ALERTS);
-        return {slides, alerts};
+        return [slides, alerts];
     }
 
-    const { slides, alerts } = useHomeScreenQueries();
+    const [slides, alerts] = useHomeScreenQueries();
 
 
 
-    if (slides.loading || alerts.loading)
-        return (
-            <SFLoading />
-        )
+    if (slides.loading || alerts.loading){
+        return <SFLoading />
+    }
     if (slides.error || alerts.error) {
-        return (
-            <SFError />
-        )
+        return <SFError />
     }
 
     let data = {

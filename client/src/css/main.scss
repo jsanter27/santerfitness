@@ -215,5 +215,31 @@ body {
 
 .sf-admin-container{
   background-color: white;
-  color: var(--sf-dark)
+  color: var(--sf-dark);
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.sf-admin-slide{
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.sf-admin-button{
+  margin-left: 2.5em;
+  margin-right: 2.5em;
+  margin-bottom: 2em;
+}
+
+.sf-admin-button2{
+  margin-bottom: 2em;
+  width: 100%;
+}
+
+.sf-admin-textarea{
+  margin-left: 2em;
+  margin-right: 2em;
+  width: 100%;
 }

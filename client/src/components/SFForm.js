@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Form, Button } from 'react-bootstrap';
+import api from '../services/apiService';
+import SFModal from './SFModal';
 
 const SFForm = () => {
 
@@ -9,6 +11,21 @@ const SFForm = () => {
         email: "",
         phone: ""
     });
+
+    const [show, setShow] = useState(false);
+
+    const [message, setMessage] = useState({
+        msgBody: "",
+        msgError: false
+    });
+
+    const handleClose = () => {
+        setShow(false);
+        setMessage({
+            msgBody: "",
+            msgError: false
+        });
+    }
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -21,6 +38,15 @@ const SFForm = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        api.requestTrial({
+            firstName: form.firstName,
+            lastName: form.lastName,
+            email: form.email,
+            phone: form.phone
+        }).then( (result) => {
+            setMessage(result.message);
+            setShow(true);
+        });
     }
 
     let isDisabled = false;
@@ -56,6 +82,7 @@ const SFForm = () => {
                     <b>All fields required.</b>
                 </Form.Text>
             </Form>
+            <SFModal show={show} onHide={handleClose} message={message}/>
         </Row>
     );
 }
