@@ -14,7 +14,7 @@ require('dotenv').config();
 const singleUpload = upload.single('image');
 const authentication = passport.authenticate('jwt', {session : false});
 
-router.post('add/slide', [authentication, singleUpload], (req, res) => {
+router.post('/add/slide', [authentication, singleUpload], (req, res) => {
     const { username } = req.user;
     const { location, key } = req.file;
     let newPicture = new Picture({key, url: location, isSchedule: false, lastModifiedBy: username});
@@ -29,7 +29,7 @@ router.post('add/slide', [authentication, singleUpload], (req, res) => {
     });
 });
 
-router.post('add/schedule', [authentication, singleUpload], (req, res) => {
+router.post('/add/schedule', [authentication, singleUpload], (req, res) => {
     const { username } = req.user;
     const { location, key } = req.file;
     Picture.findOneAndDelete({ isSchedule: true }, (err, oldSchedule) => {

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getResponse = (res) => {
-    return res.json().then(data => data);
+    return res.data;
 }
 
 const catchErrors = (err) => {
@@ -18,7 +18,7 @@ export default {
         return axios.post('/api/add/slide', data).then(getResponse).catch(catchErrors);
     },
     addSchedule : (data) => {
-        return axios.post('/api/add/slide', data).then(getResponse).catch(catchErrors);
+        return axios.post('/api/add/schedule', data).then(getResponse).catch(catchErrors);
     },
     addAlert : (data) => {
         return axios.post('/api/add/alert', data).then(getResponse).catch(catchErrors);

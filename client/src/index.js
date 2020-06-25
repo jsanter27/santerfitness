@@ -12,6 +12,7 @@ import ScheduleScreen from './components/ScheduleScreen';
 import MembershipsScreen from './components/MembershipsScreen';
 import AdminLoginScreen from './components/AdminLoginScreen';
 import AdminHomeScreen from './components/AdminHomeScreen';
+import AdminScheduleScreen from './components/AdminScheduleScreen';
 
 const client = new ApolloClient({ uri: "http://localhost:5000/graphql" });
 
@@ -23,8 +24,9 @@ ReactDOM.render(
           <Route exact path='/' component={HomeScreen} />
           <Route path='/schedule' component={ScheduleScreen} />
           <Route path='/memberships' component={MembershipsScreen} />
+          <Route exact path='/admin' component={AdminHomeScreen} />
           <Route path='/admin/login' component={AdminLoginScreen} />
-          <Route path='/admin' component={AdminHomeScreen} />
+          <Route path='/admin/schedule' component={AdminScheduleScreen} />
         </div>
       </Router>
     </ApolloHooksProvider>

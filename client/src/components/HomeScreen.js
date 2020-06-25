@@ -1,7 +1,7 @@
 import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import { Carousel, Container, Row, Col, Image } from 'react-bootstrap';
+import { Carousel, Row, Col, Image } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { FaRunning } from 'react-icons/fa';
 import { GiWeightLiftingUp, GiMeditation } from 'react-icons/gi';
@@ -13,20 +13,20 @@ import SFAlert from './SFAlert';
 import SFLoading from './SFLoading';
 import SFError from './SFError';
 
-const GET_SLIDES = gql`
+const GET_HOME = gql`
     query{
         getAllSlides{
+            _id
             key
             url
+            lastModifiedBy
         }
-    }
-`;
-
-const GET_ACTIVE_ALERTS = gql`
-    query{
         getActiveAlerts{
+            _id
             message
+            isActive
             isEmergency
+            lastModifiedBy
         }
     }
 `;
@@ -34,39 +34,42 @@ const GET_ACTIVE_ALERTS = gql`
 const HomeScreen = (props) => {
 
     const useHomeScreenQueries = () => {
-        const slides = useQuery(GET_SLIDES);
-        const alerts = useQuery(GET_ACTIVE_ALERTS);
-        return [slides, alerts];
+        let options;
+        if (props.admin){
+            options = {
+                fetchPolicy: 'no-cache',
+                pollInterval: 2000
+            };
+        }
+        else {
+            options = {
+                fetchPolicy: 'no-cache'
+            }
+        }
+        const { data, loading, error } = useQuery(GET_HOME, options);
+        return { data, loading , error };
     }
 
-    const [slides, alerts] = useHomeScreenQueries();
+    const { data, loading, error } = useHomeScreenQueries();
 
-
-
-    if (slides.loading || alerts.loading){
+    if (loading){
         return <SFLoading />
     }
-    if (slides.error || alerts.error) {
+    if (error) {
         return <SFError />
     }
-
-    let data = {
-        slides: slides.data.getAllSlides,
-        alerts: alerts.data.getActiveAlerts
-    };
 
     return (
         <div>
             <SFNavbar admin={props.admin} />
-            {data.alerts.map((alert, index) => 
+            {data.getActiveAlerts.map((alert, index) => 
                 <SFAlert key={index} message={alert.message} isEmergency={alert.isEmergency} />
             )}
-            {data.slides ?
+            {data.getAllSlides ?
                 <Carousel>
-                    {data.slides.map((slide) => 
-                        <Carousel.Item>
+                    {data.getAllSlides.map((slide) => 
+                        <Carousel.Item key={slide.key}>
                             <Image
-                                key={slide.key}
                                 src={slide.url}
                                 alt={slide.key}
                                 className="d-block w-100 sf-home-slide"

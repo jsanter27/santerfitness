@@ -12,29 +12,17 @@ const SFNavbar = (props) => {
 
     const goToHome = () => {
         if (props.admin){
-            history.push("/admin");
+            return;
         }
-        else{
-            history.push("/");
-        }
+        history.push('/');
     };
 
     const goToSchedule = () => {
-        if (props.admin){
-            history.push("/admin/schedule");
-        }
-        else{
-            history.push("/schedule");
-        }
+        history.push('/schedule');
     };
 
     const goToMemberships = () => {
-        if (props.admin){
-            history.push("/admin/memberships");
-        }
-        else{
-            history.push("/memberships");
-        }
+        history.push("/memberships");
     }
 
     return (
@@ -57,10 +45,10 @@ const SFNavbar = (props) => {
             </Row>
             <Navbar.Collapse>
                 <Nav className="justify-content-end" style={{width:"100%"}}>
-                    <Nav.Link className="sf-nav-link" onClick={goToHome}><b>Home</b> <HouseDoorFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link className="sf-nav-link" onClick={goToSchedule}><b>Classes</b> <CalendarDateFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link className="sf-nav-link" onClick={goToMemberships}><b>Memberships</b> <PeopleFill color={LIGHT} /></Nav.Link>
-                    <Nav.Link className="sf-nav-link" href={props.admin ? "#sf-footer" : null}><b>Contact</b> <EnvelopeFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" onClick={goToHome} disabled={props.admin}><b>Home</b> <HouseDoorFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" onClick={goToSchedule} disabled={props.admin}><b>Classes</b> <CalendarDateFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" onClick={goToMemberships} disabled={props.admin}><b>Memberships</b> <PeopleFill color={LIGHT} /></Nav.Link>
+                    <Nav.Link className="sf-nav-link" href="#sf-footer" disabled={props.admin}><b>Contact</b> <EnvelopeFill color={LIGHT} /></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

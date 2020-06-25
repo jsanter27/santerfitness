@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
+import { useHistory } from 'react-router-dom';
 import { Col, Row, Container, Form, Image, Button } from 'react-bootstrap';
 import api from '../services/apiService';
 
@@ -9,7 +10,7 @@ import SFLoading from './SFLoading';
 import SFError from './SFError';
 import SFModal from './SFModal';
 
-const GET_SLIDES = gql`
+const GET_HOME = gql`
     query{
         getAllSlides{
             _id
@@ -17,11 +18,6 @@ const GET_SLIDES = gql`
             url
             lastModifiedBy
         }
-    }
-`;
-
-const GET_ALERTS = gql`
-    query{
         getAllAlerts{
             _id
             message
@@ -43,24 +39,24 @@ const AdminHomeScreen = () => {
     const [show, setShow] = useState(false);
 
     const useAdminHomeQueries = () => {
-        const slides = useQuery(GET_SLIDES);
-        const alerts = useQuery(GET_ALERTS);
-        return [slides, alerts];
+        const options = {
+            fetchPolicy: 'no-cache',
+            pollInterval: 2000
+        };
+        const { data, loading, error } = useQuery(GET_HOME, options);
+        return { data, loading, error };
     };
 
-    const [slides, alerts] = useAdminHomeQueries();
+    const { data, loading, error } = useAdminHomeQueries();
 
-    if (slides.loading || alerts.loading) {
+    const history = useHistory();
+
+    if (loading) {
         return <SFLoading />
     }
-    if (slides.error || alerts.error) {
+    if (error) {
         return <SFError />
     }
-
-    let data = {
-        slides: slides.data.getAllSlides,
-        alerts: alerts.data.getAllAlerts
-    };
 
     const handleClose = () => {
         setShow(false);
@@ -79,7 +75,10 @@ const AdminHomeScreen = () => {
 
     const handleAddSlide = (event) => {
         event.preventDefault();
-        let file = event.target.files[0];
+        if(!event.target[0].files[0]){
+            return;
+        }
+        let file = event.target[0].files[0];
         if (!file) {
             return;
         }
@@ -136,17 +135,30 @@ const AdminHomeScreen = () => {
         });
     }
 
+    const goToEditClass = () => {
+        history.push("/admin/schedule");
+    }
+
+    let slides = data.getAllSlides;
+    let alerts = data.getAllAlerts;
+
     return (
         <Row style={{margin:"1em"}}>
             <Col className="sf-admin-workspace">
                 <Container className="sf-admin-container">
+                    <Row className="d-flex justify-content-end">
+                        <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditClass}>Edit Class Page</Button>
+                    </Row>
                     <Row>
                         <Col className="d-flex justify-content-center">
-                            <h4 style={{marginTop:"2em"}}><b>Manage Slides</b></h4>
+                            <h4 style={{marginTop:"1em", marginBottom:"1em"}}><b>Manage Slides</b></h4>
                         </Col>
                     </Row>
-                    {data.slides.map( (slide, idx) => 
+                    {slides.map( (slide, idx) => 
                         <div key={idx}>
+                            <Row className="d-flex justify-content-center">
+                                <h6>Uploaded by: {slide.lastModifiedBy}</h6>
+                            </Row>
                             <Row className="d-flex justify-content-center">
                                 <Image
                                     key={slide.key}
@@ -177,7 +189,7 @@ const AdminHomeScreen = () => {
                     <Row className="d-flex justify-content-center">
                         <h4><b>Manage Alerts</b></h4>
                     </Row>
-                    {data.alerts.map( (alert, idx) => 
+                    {alerts.map( (alert, idx) => 
                         <Form key={idx} onSubmit={(event) => handleUpdateAlert(event, alert._id)}>
                             <Row className="d-flex justify-content-center">
                                 <Form.Group className="sf-admin-textarea">

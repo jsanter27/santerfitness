@@ -20,7 +20,7 @@ const signToken = id => {
 }
 
 // REGISTER ROUTE
-router.post('/register', (req, res) => {
+router.post('/register', passport.authenticate('jwt', {session : false}), (req, res) => {
   const { username, password } = req.body;
   User.findOne({username}, (err, user) => {
     if (err)

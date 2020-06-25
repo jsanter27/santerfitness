@@ -1,15 +1,20 @@
 import axios from 'axios';
 
 const getResponse = (res) => {
-    return res.json().then(data => data);
+    console.log(res);
+    return res.data;
 }
 
 const catchErrors = (err) => {
-    if (err.response.status != 401){
+    console.log(err);
+    if (!err){
+        return;
+    }
+    if (err.response.status !== 401){
         return err.response.data;
     }
     else {
-        return { isAuthenticated : false, user : { username : "" } };
+        return { isAuthenticated : false, user : { username : "" }, message : { msgBody: "Incorrect Username or password", msgError: true } };
     }
 }
 
@@ -33,8 +38,8 @@ export default {
         }); */
         return axios.post('/users/login', user).then(getResponse).catch(catchErrors);
     },
-    register : user => {
-        /* return fetch('/users/register', {
+    /* register : user => {
+        return fetch('/users/register', {
             method : "post",
             body : JSON.stringify(user),
             headers : {
@@ -49,9 +54,9 @@ export default {
             else{
                 return { isAuthenticated : false, user : { username : "" } };
             }
-        }); */
+        });
         return axios.post('/users/register', user).then(getResponse).catch(catchErrors);
-    },
+    }, */
     forgotPassword : user => {
         /* return fetch('/users/forgot', {
             method : "post",
