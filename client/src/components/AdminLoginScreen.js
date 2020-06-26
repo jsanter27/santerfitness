@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Container, Row, Form, Button} from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import auth from '../services/authService';
 import { AuthContext } from '../context/AuthContext';
 import SFModal from './SFModal';
@@ -56,7 +56,7 @@ const AdminLoginScreen = () => {
     }
 
     let btnDisabled = true;
-    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(userInput.username) && userInput.password.length >= 6)
         btnDisabled = false;
 

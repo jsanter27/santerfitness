@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import { useHistory } from 'react-router-dom';
-import { Col, Row, Container, Form, Image, Button } from 'react-bootstrap';
+import { Col, Row, Form, Image, Button } from 'react-bootstrap';
 import api from '../services/apiService';
 
 import HomeScreen from './HomeScreen';
