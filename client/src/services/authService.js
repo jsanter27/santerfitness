@@ -94,7 +94,7 @@ export default {
                 }); */
         return axios.get('/users/authenticated').then(getResponse).catch(catchErrors);
     },
-    changePassword : (username, password) => {
-        return axios.post('/users/changepassword', {username, password}).then(getResponse).catch(catchErrors);
+    changePassword : (resetPasswordToken, password) => {
+        return axios.post('/users/changepassword', {resetPasswordToken, password}).then(getResponse).catch(catchErrors);
     } 
 }

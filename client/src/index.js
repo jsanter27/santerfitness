@@ -6,6 +6,9 @@ import { ApolloProvider as ApolloHooksProvider } from 'react-apollo-hooks';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './css/main.css';
 import * as serviceWorker from './services/serviceWorker';
+import AuthProvider from './context/AuthContext';
+import PrivateRoute from './hocs/PrivateRoute';
+import UnPrivateRoute from './hocs/UnPrivateRoute';
 
 import HomeScreen from './components/HomeScreen';
 import ScheduleScreen from './components/ScheduleScreen';
@@ -13,22 +16,26 @@ import MembershipsScreen from './components/MembershipsScreen';
 import AdminLoginScreen from './components/AdminLoginScreen';
 import AdminHomeScreen from './components/AdminHomeScreen';
 import AdminScheduleScreen from './components/AdminScheduleScreen';
+import AdminForgotPasswordScreen from './components/AdminForgotPasswordScreen';
+import AdminChangePasswordScreen from './components/AdminChangePasswordScreen';
 
 const client = new ApolloClient({ uri: "http://localhost:5000/graphql" });
 
 ReactDOM.render(
   <ApolloProvider client={client}>
     <ApolloHooksProvider client={client}>
-      <Router>
-        <div>
+      <AuthProvider>
+        <Router>
           <Route exact path='/' component={HomeScreen} />
           <Route path='/schedule' component={ScheduleScreen} />
           <Route path='/memberships' component={MembershipsScreen} />
-          <Route exact path='/admin' component={AdminHomeScreen} />
-          <Route path='/admin/login' component={AdminLoginScreen} />
-          <Route path='/admin/schedule' component={AdminScheduleScreen} />
-        </div>
-      </Router>
+          <PrivateRoute exact path='/admin' component={AdminHomeScreen} />
+          <PrivateRoute path='/admin/schedule' component={AdminScheduleScreen} />
+          <UnPrivateRoute path='/admin/login' component={AdminLoginScreen} />
+          <UnPrivateRoute path='/admin/forgot' component={AdminForgotPasswordScreen} />
+          <UnPrivateRoute path='/admin/reset/:token' component={AdminChangePasswordScreen} />
+        </Router>
+      </AuthProvider>
     </ApolloHooksProvider>
   </ApolloProvider>,
   document.getElementById('root')

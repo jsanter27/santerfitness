@@ -29,24 +29,13 @@ const GET_SCHEDULE = gql`
 
 const ScheduleScreen = (props) => {
 
-    const useScheduleQueries = () => {
-        let options;
-        if (props.admin) {
-            options = {
-                fetchPolicy: 'no-cache',
-                pollInterval: 2000
-            };
-        } else {
-            options = {
-                fetchPolicy: 'no-cache'
-            }
-        }
-        const { data, loading, error } = useQuery(GET_SCHEDULE, options);
-        return { data, loading, error };
+    var { data, loading, error } = useQuery(GET_SCHEDULE);
+
+    if (props.admin){
+        data = props.admin.data;
+        loading = props.admin.loading;
+        error = props.admin.error;
     }
-
-
-    const { data, loading, error } = useScheduleQueries();
 
     if (loading)
         return <SFLoading />;

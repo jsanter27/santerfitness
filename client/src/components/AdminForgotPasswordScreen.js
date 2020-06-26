@@ -1,17 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Form, Button} from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import auth from '../services/authService';
-import { AuthContext } from '../context/AuthContext';
 import SFModal from './SFModal';
 
-const AdminLoginScreen = () => {
-
-    const { setUser, setIsAuthenticated } = useContext(AuthContext);
+const AdminForgotPasswordScreen = () => {
 
     const [userInput, setUserInput] = useState({
-        username: "",
-        password: ""
+        username: ""
     });
 
     const [modal, setModal] = useState({
@@ -22,26 +18,21 @@ const AdminLoginScreen = () => {
         }
     });
 
+    const history = useHistory();
+
     const handleChange = (event) => {
         setUserInput({
-            ...userInput,
-            [event.target.name]: event.target.value 
+            username: event.target.value 
         });
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        auth.login(userInput).then( (result) => {
-            if (result.isAuthenticated){
-                setIsAuthenticated(true);
-                setUser(result.user);
-            }
-            else {
-                setModal({
-                    show: true,
-                    message: result.message
-                });
-            }
+        auth.forgotPassword(userInput).then( (result) => {
+            setModal({
+                show: true,
+                message: result.message
+            })
         });
     }
 
@@ -57,13 +48,13 @@ const AdminLoginScreen = () => {
 
     let btnDisabled = true;
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(userInput.username) && userInput.password.length >= 6)
+    if (re.test(userInput.username))
         btnDisabled = false;
 
     return (
         <Container className="sf-login-container">
             <Row className="d-flex justify-content-center">
-                <h3><b>Admin Login</b></h3>
+                <h3><b>Password Reset</b></h3>
             </Row>
             <Form onSubmit={handleSubmit}>
                 <Row>
@@ -72,17 +63,11 @@ const AdminLoginScreen = () => {
                         <Form.Control type="email" value={userInput.username} id="username" name="username" onChange={handleChange} />
                     </Form.Group>
                 </Row>
-                <Row>
-                    <Form.Group style={{width:"100%"}}>
-                        <Form.Label>Password:</Form.Label>
-                        <Form.Control type="password" value={userInput.password} id="password" name="password" onChange={handleChange} />
-                    </Form.Group>
-                </Row>
                 <Row className="d-flex justify-content-center" style={{marginBottom:".5em"}}>
-                    <Button variant="dark" type="submit" size="lg" disabled={btnDisabled}>Login</Button>
+                    <Button variant="dark" type="submit" size="lg" disabled={btnDisabled}>Send Email</Button>
                 </Row>
                 <Row className="d-flex justify-content-center">
-                    <Link to="/admin/forgot">Forgot Password?</Link>
+                    <Link to="/admin/login">Back to Login</Link>
                 </Row>
             </Form>
             <SFModal show={modal.show} onHide={handleClose} message={modal.message} />
@@ -90,4 +75,4 @@ const AdminLoginScreen = () => {
     );
 };
 
-export default AdminLoginScreen;
+export default AdminForgotPasswordScreen;

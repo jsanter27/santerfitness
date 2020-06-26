@@ -37,16 +37,7 @@ const AdminScheduleScreen = () => {
 
     const [show, setShow] = useState(false);
 
-    const useAdminScheduleQueries = () => {
-        const options = {
-            fetchPolicy: 'no-cache',
-            pollInterval: 2000
-        };
-        const { data, loading, error } = useQuery(GET_SCHEDULE, options);
-        return { data, loading, error };
-    }
-
-    const { data, loading, error } = useAdminScheduleQueries();
+    const { data, loading, error, refetch } = useQuery(GET_SCHEDULE);
 
     const history = useHistory();
 
@@ -97,6 +88,7 @@ const AdminScheduleScreen = () => {
             api.addSchedule(formData).then( (result) => {
                 setMessage(result.message);
                 setShow(true);
+                refetch();
             });
         }
     }
@@ -117,6 +109,7 @@ const AdminScheduleScreen = () => {
         api.updateEvent(id, data).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -124,6 +117,7 @@ const AdminScheduleScreen = () => {
         api.removeEvent(id).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -143,6 +137,7 @@ const AdminScheduleScreen = () => {
         api.addEvent(data).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -258,7 +253,7 @@ const AdminScheduleScreen = () => {
                 </Container>
             </Col>
             <Col className="d-none d-lg-block">
-                <ScheduleScreen admin/>
+                <ScheduleScreen admin={{ data, loading, error }}/>
             </Col>
         </Row>
     );

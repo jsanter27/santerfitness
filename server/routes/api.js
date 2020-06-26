@@ -32,7 +32,7 @@ router.post('/add/slide', [authentication, singleUpload], (req, res) => {
 router.post('/add/schedule', [authentication, singleUpload], (req, res) => {
     const { username } = req.user;
     const { location, key } = req.file;
-    Picture.findOneAndDelete({ isSchedule: true }, (err, oldSchedule) => {
+    Picture.findOneAndRemove({ isSchedule: true }, (err, oldSchedule) => {
         if (err){
             res.status(500).json({message : {msgBody : "Could not delete old image", msgError: true}});
         }

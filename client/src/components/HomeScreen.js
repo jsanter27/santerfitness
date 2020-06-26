@@ -21,7 +21,7 @@ const GET_HOME = gql`
             url
             lastModifiedBy
         }
-        getActiveAlerts{
+        getAllAlerts{
             _id
             message
             isActive
@@ -33,26 +33,16 @@ const GET_HOME = gql`
 
 const HomeScreen = (props) => {
 
-    const useHomeScreenQueries = () => {
-        let options;
-        if (props.admin){
-            options = {
-                fetchPolicy: 'no-cache',
-                pollInterval: 2000
-            };
-        }
-        else {
-            options = {
-                fetchPolicy: 'no-cache'
-            }
-        }
-        const { data, loading, error } = useQuery(GET_HOME, options);
-        return { data, loading , error };
+
+    var { data, loading, error } = useQuery(GET_HOME);
+
+    if (props.admin){
+        data = props.admin.data;
+        loading = props.admin.loading;
+        error = props.admin.error;  
     }
 
-    const { data, loading, error } = useHomeScreenQueries();
-
-    if (loading){
+    if (loading ){
         return <SFLoading />
     }
     if (error) {
@@ -62,7 +52,7 @@ const HomeScreen = (props) => {
     return (
         <div>
             <SFNavbar admin={props.admin} />
-            {data.getActiveAlerts.map((alert, index) => 
+            {data.getAllAlerts.filter( (alert) => alert.isActive ).map((alert, index) => 
                 <SFAlert key={index} message={alert.message} isEmergency={alert.isEmergency} />
             )}
             {data.getAllSlides ?

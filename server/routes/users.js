@@ -106,13 +106,13 @@ router.get('/authenticated', passport.authenticate('jwt', {session : false}), (r
 });
 
 router.post('/changepassword', (req, res) => {
-  const { username, password } = req.body;
-  User.findOne({ username }, (err, user) => {
+  const { resetPasswordToken, password } = req.body;
+  User.findOne({ resetPasswordToken }, (err, user) => {
     if (!user){
-      res.status(400).json({message : {msgBody : "Account not found", msgError: true}});
-    }
-    else if (!user.resetPasswordToken || user.resetPasswordExpires < Date.now()) {
       res.status(400).json({message : {msgBody : "Cannot change user's password at this time", msgError: true}});
+    }
+    else if (user.resetPasswordExpires < Date.now()) {
+      res.status(400).json({message : {msgBody : "The period to change this user's password has expired", msgError: true}});
     }
     else {
       bcrypt.hash(password, 10, (err, hashedPassword) => {

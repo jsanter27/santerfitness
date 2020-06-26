@@ -38,16 +38,7 @@ const AdminHomeScreen = () => {
 
     const [show, setShow] = useState(false);
 
-    const useAdminHomeQueries = () => {
-        const options = {
-            fetchPolicy: 'no-cache',
-            pollInterval: 2000
-        };
-        const { data, loading, error } = useQuery(GET_HOME, options);
-        return { data, loading, error };
-    };
-
-    const { data, loading, error } = useAdminHomeQueries();
+    const { data, loading, error, refetch } = useQuery(GET_HOME);
 
     const history = useHistory();
 
@@ -70,6 +61,7 @@ const AdminHomeScreen = () => {
         api.removeSlide(key).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -88,6 +80,7 @@ const AdminHomeScreen = () => {
             api.addSlide(formData).then( (result) => {
                 setMessage(result.message);
                 setShow(true);
+                refetch();
             });
         }
     }
@@ -107,6 +100,7 @@ const AdminHomeScreen = () => {
         api.updateAlert(id, data).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -114,6 +108,7 @@ const AdminHomeScreen = () => {
         api.removeAlert(id).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -132,6 +127,7 @@ const AdminHomeScreen = () => {
         api.addAlert(data).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            refetch();
         });
     }
 
@@ -139,13 +135,10 @@ const AdminHomeScreen = () => {
         history.push("/admin/schedule");
     }
 
-    let slides = data.getAllSlides;
-    let alerts = data.getAllAlerts;
-
     return (
-        <Row style={{margin:"1em"}}>
+        <Row style={{margin:"0em"}}>
             <Col className="sf-admin-workspace">
-                <Container className="sf-admin-container">
+                <div className="sf-admin-container">
                     <Row className="d-flex justify-content-end">
                         <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditClass}>Edit Class Page</Button>
                     </Row>
@@ -154,7 +147,7 @@ const AdminHomeScreen = () => {
                             <h4 style={{marginTop:"1em", marginBottom:"1em"}}><b>Manage Slides</b></h4>
                         </Col>
                     </Row>
-                    {slides.map( (slide, idx) => 
+                    {data.getAllSlides.map( (slide, idx) => 
                         <div key={idx}>
                             <Row className="d-flex justify-content-center">
                                 <h6>Uploaded by: {slide.lastModifiedBy}</h6>
@@ -189,7 +182,7 @@ const AdminHomeScreen = () => {
                     <Row className="d-flex justify-content-center">
                         <h4><b>Manage Alerts</b></h4>
                     </Row>
-                    {alerts.map( (alert, idx) => 
+                    {data.getAllAlerts.map( (alert, idx) => 
                         <Form key={idx} onSubmit={(event) => handleUpdateAlert(event, alert._id)}>
                             <Row className="d-flex justify-content-center">
                                 <Form.Group className="sf-admin-textarea">
@@ -204,11 +197,11 @@ const AdminHomeScreen = () => {
                                 </Form.Group>
                             </Row>
                             <Row>
-                                <Col>
-                                    <Button type="submit" variant="warning" className="sf-admin-button2" size="lg" block>Update Alert</Button>
+                                <Col className="d-flex justify-content-center">
+                                    <Button type="submit" variant="warning" className="sf-admin-button2" size="lg">Update Alert</Button>
                                 </Col>
-                                <Col>
-                                    <Button type="button" variant="danger" className="sf-admin-button2" size="lg" block onClick={() => handleDeleteAlert(alert._id)}>Delete Alert</Button>
+                                <Col className="d-flex justify-content-center">
+                                    <Button type="button" variant="danger" className="sf-admin-button2" size="lg" onClick={() => handleDeleteAlert(alert._id)}>Delete Alert</Button>
                                 </Col>
                             </Row>
                         </Form>
@@ -234,10 +227,10 @@ const AdminHomeScreen = () => {
                         </Row>
                     </Form>
                     <SFModal show={show} onHide={handleClose} message={message}/>
-                </Container>   
+                </div>   
             </Col>
             <Col className="d-none d-lg-block">
-                <HomeScreen admin/>
+                <HomeScreen admin={{ data, loading, error }}/>
             </Col>
         </Row>
     );
