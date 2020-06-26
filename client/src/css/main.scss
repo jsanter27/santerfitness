@@ -30,7 +30,6 @@ body {
 .sf-nav-link{
   text-align: center;
   font-size: 1.2em;
-  width: fit-content;
 }
 
 .sf-nav-toggle{
@@ -114,7 +113,7 @@ body {
 
 .sf-home-card{
   margin-top: 3em;
-  margin-bottom: 3em;
+  margin-bottom: 0em;
   width: 100%;
   border-color: var(--sf-secondary);
   border-width: .2em;

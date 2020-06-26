@@ -42,7 +42,7 @@ const MembershipsScreen = (props) => {
                     />
                 </Col>
             </Row>
-            <Row className="sf-home-row1">
+            <Row className="sf-home-row1" style={{paddingBottom:"3em"}}>
                 <Col className="d-flex justify-content-center">
                     <SFCard
                         title="Family (2 members)"

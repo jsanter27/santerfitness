@@ -1,12 +1,10 @@
 import axios from 'axios';
 
 const getResponse = (res) => {
-    console.log(res);
     return res.data;
 }
 
 const catchErrors = (err) => {
-    console.log(err);
     if (!err){
         return;
     }

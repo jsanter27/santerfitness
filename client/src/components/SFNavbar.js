@@ -40,7 +40,7 @@ const SFNavbar = (props) => {
                     </Navbar.Brand>
                 </Col>
                 <Col className="sf-nav-toggle">
-                    <Navbar.Toggle className="sf-navbar-brand" onClick={() => setExpanded(expanded ? false : "expanded")}><List color={LIGHT} size="2.25em"/></Navbar.Toggle>
+                    <Navbar.Toggle onClick={() => setExpanded(expanded ? false : "expanded")}><List color={LIGHT} size="3.25em"/></Navbar.Toggle>
                 </Col>
             </Row>
             <Navbar.Collapse>

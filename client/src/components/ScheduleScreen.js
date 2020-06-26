@@ -105,7 +105,7 @@ const ScheduleScreen = (props) => {
                     <Row className="sf-home-row1">
                         <h6 className="sf-home-subheader"><b>Instructor(s): {getInstructorString(event.instructors)}</b></h6>
                     </Row>
-                    <Row className="sf-home-row1">
+                    <Row className="sf-home-row1" style={{paddingBottom:"-2em"}}>
                         <p className="sf-home-body">
                             {event.description}
                         </p>

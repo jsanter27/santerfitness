@@ -10,7 +10,7 @@ const bcrypt = require('bcrypt');
 
 require('dotenv').config();
 
-const site_url = "http://localhost:" + (process.env.PORT || '3000');
+const site_url = (process.env.URL || "http://localhost:" + (process.env.CLIENT_PORT || '3000'));
 
 const signToken = id => {
   return jwt.sign({
@@ -78,7 +78,7 @@ router.post('/forgot', (req, res) => {
         to: `${user.username}`,
         subject: 'Reset Password Request',
         text: `To reset your password, please click the link within one hour of receiving this email:\n\n` +
-              `${site_url}/reset/${token}\n\n` +
+              `${site_url}/admin/reset/${token}\n\n` +
               `If you didn't request this, delete this message.\n`
       };
       transporter.sendMail(mailOptions, function(err, response) {
