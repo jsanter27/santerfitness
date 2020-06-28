@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import { useHistory } from 'react-router-dom';
 import { Col, Row, Form, Image, Button } from 'react-bootstrap';
 import api from '../services/apiService';
+import auth from '../services/authService';
+import { AuthContext } from '../context/AuthContext';
 
 import HomeScreen from './HomeScreen';
 import SFLoading from './SFLoading';
@@ -30,6 +32,8 @@ const GET_HOME = gql`
 
 
 const AdminHomeScreen = () => {
+
+    const { setUser, setIsAuthenticated } = useContext(AuthContext);
 
     const [message, setMessage] = useState({
         msgBody: "",
@@ -135,12 +139,29 @@ const AdminHomeScreen = () => {
         history.push("/admin/schedule");
     }
 
+    const goToEditNotify = () => {
+        history.push('/admin/notify');
+    }
+
+    const logOut = () => {
+        auth.logout().then( (result) => {
+            setUser(result.user);
+            setIsAuthenticated(result.isAuthenticated);
+        })
+    }
+
     return (
         <Row style={{margin:"0em"}}>
             <Col className="sf-admin-workspace">
                 <div className="sf-admin-container">
-                    <Row className="d-flex justify-content-end">
+                    <Row className="d-flex justify-content-end" style={{paddingBottom:".5em"}}>
+                        <Button variant="danger" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={logOut}>Logout</Button>
+                    </Row>
+                    <Row className="d-flex justify-content-end" style={{paddingBottom:".5em"}}>
                         <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditClass}>Edit Class Page</Button>
+                    </Row>
+                    <Row className="d-flex justify-content-end">
+                        <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditNotify}>Edit Notify List</Button>
                     </Row>
                     <Row>
                         <Col className="d-flex justify-content-center">

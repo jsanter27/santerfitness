@@ -5,6 +5,7 @@ const s3 = require('../services/uploads').s3;
 const Picture = require('../models/Picture');
 const Alert = require('../models/Alert');
 const Event = require('../models/Event');
+const Notification = require('../models/Notification');
 const passport = require('passport');
 const nodemailer = require('nodemailer');
 
@@ -295,6 +296,17 @@ router.get('/event/:id', (req, res) => {
     });
 });
 
+router.get('/notifications', authentication, (req, res) => {
+    Notification.find((err, notifs) => {
+        if (err) {
+            res.status(500).json({message : {msgBody : "Database error", msgError: true}});            
+        }
+        else {
+            res.status(201).json({message : {msgBody : "Successfully found notification list", msgError: false}, data : notifs});            
+        }
+    });
+})
+
 router.post('/trial', (req, res) => {
     const { firstName, lastName, email, phone } = req.body;
 
@@ -305,20 +317,20 @@ router.post('/trial', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.SF_EMAIL,
-            pass: process.env.SF_EMAIL_PASSWORD
+            user: process.env.SF_BOT_EMAIL,
+            pass: process.env.SF_BOT_PASSWORD
         }
     });
 
     const mailOptions = {
-        from: process.env.SF_EMAIL,
+        from: process.env.SF_BOT_EMAIL,
         to: process.env.SF_EMAIL,
         subject: `NEW 7 DAY PASS REQUEST: ${firstName} ${lastName}`,
         text: `\nReminder: Verify that the person is not already in the system...\n\n\n` +
-              `First Name    : ${firstName}\n\n` +
-              `Last Name     : ${lastName}\n\n` +
-              `Email Address : ${email}\n\n` +
-              `Phone Number  : ${phone}\n\n\n`
+              `First Name: ${firstName}\n\n` +
+              `Last Name: ${lastName}\n\n` +
+              `Email Address: ${email}\n\n` +
+              `Phone Number: ${phone}\n\n\n`
     }
 
     transporter.sendMail(mailOptions, (err, response) => {
@@ -329,6 +341,35 @@ router.post('/trial', (req, res) => {
             res.status(200).json({message: {msgBody : "Request for 7 day pass sent", msgError: false}});
         }
     })
+});
+
+router.post('/add/notification', (req, res) => {
+    const { number } = req.body;
+
+    Notification.findOne({ number }, (err, num) => {
+        if (err) {
+            res.status(500).json({message : {msgBody : "Database error", msgError: true}});
+            return;
+        }
+        else if (num) {
+            res.status(400).json({message : {msgBody : "Number already added to list", msgError: true}});
+            return;
+        }
+        
+        let newNotif = new Notification({number});
+
+        newNotif.save((err, notif) => {
+            if (err) {
+                res.status(500).json({message : {msgBody : "Database error", msgError: true}});
+            }
+            else if (!notif) {
+                res.status(500).json({message : {msgBody : "Could not save phone number to the database", msgError: true}});
+            }
+            else {
+                res.status(201).json({message : {msgBody : "Phone number successfully added", msgError: false}, data : notif});
+            }
+        });
+    });
 });
 
 module.exports = router;

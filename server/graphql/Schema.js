@@ -11,35 +11,12 @@ const GraphQLString = require('graphql').GraphQLString;
 //const GraphQLFloat = require('graphql').GraphQLFloat;
 const GraphQLBoolean = require('graphql').GraphQLBoolean;
 const GraphQLDate = require('graphql-date');
-const UserModel = require('../models/User');
 const PictureModel = require('../models/Picture');
 const EventModel = require('../models/Event');
 const AlertModel = require('../models/Alert');
+const NotificationModel = require('../models/Notification');
 
 require('dotenv').config();
-
-const userType = new GraphQLObjectType({
-    name: "userType",
-    fields: function () {
-        return {
-            _id: {
-                type: GraphQLString
-            },
-            username: {
-                type: GraphQLString
-            },
-            password: {
-                type: GraphQLString
-            },
-            resetPasswordToken: {
-                type: GraphQLString
-            },
-            resetPasswordExpires: {
-                type: GraphQLDate
-            }
-        }
-    }
-});
 
 const pictureType = new GraphQLObjectType({
     name: "pictureType",
@@ -110,25 +87,24 @@ const alertType = new GraphQLObjectType({
     }
 });
 
+const notificationType = new GraphQLObjectType({
+    name: "notificationType",
+    fields: function () {
+        return {
+            _id: {
+                type: GraphQLString
+            },
+            number: {
+                type: GraphQLString
+            }
+        }
+    }
+});
+
 const queryType = new GraphQLObjectType({
     name: "Query",
     fields: function () {
         return {
-            getUserByToken: {
-                type: userType,
-                args: {
-                    resetPasswordToken : {
-                        type: GraphQLString
-                    }
-                },
-                resolve: function (root, params) {
-                    const user = UserModel.findOne({ resetPasswordToken: params.resetPasswordToken }).exec();
-                    if (!user){
-                        return null;
-                    }
-                    return user;
-                }
-            },
             getAllSlides: {
                 type: new GraphQLList(pictureType),
                 resolve: function () {
@@ -179,6 +155,18 @@ const queryType = new GraphQLObjectType({
                     return alerts;
                 }
             },
+            getNotificationList: {
+                type: new GraphQLList(notificationType),
+                resolve: function () {
+                    const notifs = NotificationModel.find().exec();
+                    if (!notifs){
+                        return null;
+                    }
+                    else {
+                        return notifs;
+                    }
+                }
+            }
         }
     }
 });

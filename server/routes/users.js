@@ -69,8 +69,8 @@ router.post('/forgot', (req, res) => {
       const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-          user: process.env.SF_EMAIL,
-          pass: process.env.SF_EMAIL_PASSWORD
+          user: process.env.SF_BOT_EMAIL,
+          pass: process.env.SF_BOT_PASSWORD
         }
       });
       const mailOptions = {

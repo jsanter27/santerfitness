@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import { Carousel, Row, Col, Image } from 'react-bootstrap';
@@ -12,6 +12,7 @@ import SFCard from './SFCard';
 import SFAlert from './SFAlert';
 import SFLoading from './SFLoading';
 import SFError from './SFError';
+import SFFormPhone from './SFFormPhone';
 
 const GET_HOME = gql`
     query{
@@ -32,7 +33,6 @@ const GET_HOME = gql`
 `;
 
 const HomeScreen = (props) => {
-
 
     var { data, loading, error } = useQuery(GET_HOME);
 
@@ -68,6 +68,17 @@ const HomeScreen = (props) => {
                     )}
                 </Carousel>
             : null}
+            <Row className="sf-home-row2 d-flex justify-content-center" style={{padding:".5em", textAlign:"center"}}>
+                <h4 className="sf-home-header">
+                    <b>Sign up for Alerts and Notifications!</b>
+                </h4>
+            </Row>
+            <SFFormPhone />
+            <Row className="sf-home-row2 d-flex justify-content-center" style={{padding: ".5em", textAlign:"center"}}>
+                <h4 className="sf-home-header">
+                    <b>Our Goals</b>
+                </h4>
+            </Row>
             <Row className="sf-home-row1" xs={1} sm={3} style={{paddingBottom:"2em"}}>
                 <IconContext.Provider value={{className:"fitness-icons", size:64}}>
                     <Col className="d-flex justify-content-center">
@@ -104,7 +115,7 @@ const HomeScreen = (props) => {
             </Row>
             <Row className="sf-home-row1">
                 <h3 className="sf-home-header">
-                    <b>About</b>
+                    <b>Santer Fitness</b>
                 </h3>
             </Row>
             <Row className="sf-home-row1">

@@ -10,7 +10,6 @@ const bluebird = require('bluebird');
 
 require('dotenv').config();
 
-
 const schema = require('./graphql/Schema');
 
 mongoose.connect(process.env.MONGO_URL, { promiseLibrary: bluebird, useNewUrlParser: true, useUnifiedTopology: true})
@@ -24,9 +23,15 @@ const apiRouter = require('./routes/api');
 
 const app = express();
 
+app.get('env');
+
+
+
 app.set('view engine', 'ejs');
 
-app.use(morgan('dev'));
+if (process.env.NODE_ENV === 'development')
+    app.use(morgan('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -39,7 +44,7 @@ app.use('*', cors());
 app.use('/graphql', cors(), graphqlHTTP({
     schema: schema,
     rootValue: global,
-    graphiql: true
+    graphiql: process.env.NODE_ENV === 'development'
 }));
 
 app.use(function(req, res, next) {
@@ -55,6 +60,13 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
+
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, '..', 'client', 'build', 'index.html'));
+    });
+}
 
 module.exports = app;
 

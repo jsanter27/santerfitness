@@ -11062,4 +11062,10 @@ body {
   border-style: solid;
   border-radius: 1em;
 }
+
+.sf-modal {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
 /*# sourceMappingURL=main.css.map */

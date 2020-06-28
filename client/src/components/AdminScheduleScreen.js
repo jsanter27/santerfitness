@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import gql from 'graphql-tag';
 import { useHistory } from 'react-router-dom';
 import { useQuery } from 'react-apollo-hooks';
 import { Col, Row, Container, Form, Image, Button } from 'react-bootstrap';
 import api from '../services/apiService';
+import auth from '../services/authService';
+import { AuthContext } from '../context/AuthContext';
 
 import ScheduleScreen from './ScheduleScreen';
 import SFLoading from './SFLoading';
@@ -29,6 +31,8 @@ const GET_SCHEDULE = gql`
 `;
 
 const AdminScheduleScreen = () => {
+
+    const { setUser, setIsAuthenticated } = useContext(AuthContext);
 
     const [message, setMessage] = useState({
         msgBody: "",
@@ -145,12 +149,29 @@ const AdminScheduleScreen = () => {
         history.push('/admin');
     }
 
+    const goToEditNotify = () => {
+        history.push('/admin/notify');
+    }
+
+    const logOut = () => {
+        auth.logout().then( (result) => {
+            setUser(result.user);
+            setIsAuthenticated(result.isAuthenticated);
+        });
+    }
+
     return (
         <Row style={{margin:"1em"}}>
             <Col className="sf-admin-workspace">
                 <Container className="sf-admin-container">
-                    <Row className="d-flex justify-content-end">
+                    <Row className="d-flex justify-content-end" style={{paddingBottom:".5em"}}>
+                        <Button variant="danger" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={logOut}>Log Out</Button>
+                    </Row>
+                    <Row className="d-flex justify-content-end" style={{paddingBottom:".5em"}}>
                         <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditHome}>Edit Home Page</Button>
+                    </Row>
+                    <Row className="d-flex justify-content-end">
+                        <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditNotify}>Edit Notify List</Button>
                     </Row>
                     <Row className="d-flex justify-content-center">
                         <h4 style={{marginBottom:"1em", marginTop:"1em"}}><b>Manage Schedule</b></h4>
@@ -214,10 +235,10 @@ const AdminScheduleScreen = () => {
                                 </Form.Group>
                             </Row>
                             <Row>
-                                <Col>
+                                <Col className="d-flex justify-content-center">
                                     <Button type="submit" variant="warning" className="sf-admin-button2" size="lg" block>Update Class</Button>
                                 </Col>
-                                <Col>
+                                <Col className="d-flex justify-content-center">
                                     <Button type="button" variant="danger" className="sf-admin-button2" size="lg" block onClick={() => handleDeleteEvent(event._id)}>Delete Class</Button>
                                 </Col>
                             </Row>

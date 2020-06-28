@@ -46,11 +46,19 @@ const SFForm = () => {
         }).then( (result) => {
             setMessage(result.message);
             setShow(true);
+            setForm({
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: ""
+            });
         });
     }
 
+    const phoneregex = /^\(?([0-9]{3})\)?([0-9]{3})([0-9]{4})$/;
+    const emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     let isDisabled = false;
-    if (form.firstName.trim() === "" || form.lastName.trim() === "" || form.email.trim() === "" || form.phone.trim() === "")
+    if (form.firstName.trim() === "" || form.lastName.trim() === "" || form.email.trim() === "" || form.phone.trim() === "" || !phoneregex.test(form.phone) || !emailregex.test(form.email))
         isDisabled= true;
 
     return (
@@ -58,19 +66,19 @@ const SFForm = () => {
             <Form className="sf-home-form" onSubmit={handleSubmit}>
                 <Form.Group controlId="firstName">
                     <Form.Label>First Name:</Form.Label>
-                    <Form.Control name="firstName" type="text" placeholder="Ex. John" onChange={handleChange}/>
+                    <Form.Control name="firstName" type="text" value={form.firstName} placeholder="Ex. John" onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="lastName">
                     <Form.Label>Last Name:</Form.Label>
-                    <Form.Control name="lastName" type="text" placeholder="Ex. Smith" onChange={handleChange}/>
+                    <Form.Control name="lastName" type="text" value={form.lastName} placeholder="Ex. Smith" onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="email">
                     <Form.Label>Email Address:</Form.Label>
-                    <Form.Control name="email" type="email" placeholder="Ex: info@santerfitness.com" onChange={handleChange}/>
+                    <Form.Control name="email" type="email" value={form.email} placeholder="Ex: info@santerfitness.com" onChange={handleChange}/>
                 </Form.Group>
                 <Form.Group controlId="phone">
                     <Form.Label>Phone Number:</Form.Label>
-                    <Form.Control name="phone" type="text" placeholder="Ex: (845) 496-9188" onChange={handleChange}/>
+                    <Form.Control name="phone" type="text" value={form.phone} placeholder="Ex: 8454969188" onChange={handleChange}/>
                 </Form.Group>
                 <div className="sf-home-form-button">
                     <Button type="submit" variant="dark" size="lg" block disabled={isDisabled}>
