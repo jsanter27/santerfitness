@@ -4,10 +4,10 @@
 
 # Environment variables
 
-/server/.env
+.env
 /client/.env
 
 # Dependencies
 
 /client/node_modules
-/server/node_modules
+/node_modules
