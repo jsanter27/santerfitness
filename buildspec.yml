@@ -5,8 +5,10 @@ phases:
     commands:
       # install Node 12
       # install npm
+      - pip install --upgrade awscli
       - curl -sL https://deb.nodesource.com/setup_12.x | bash -
       - apt install nodejs
+
   pre_build:
     commands:
       # install dependencies
