@@ -13,6 +13,7 @@ phases:
     commands:
       # install dependencies
       - npm install
+      - npm install --prefix client
   build:
     commands:
       # build
