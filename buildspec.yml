@@ -1,0 +1,17 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      # install Node 12
+      # install npm
+      - curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash - 
+      - sudo yum -y install nodejs
+  pre_build:
+    commands:
+      # install dependencies
+      - npm install
+  build:
+    commands:
+      # build
+      - npm run --prefix client build
