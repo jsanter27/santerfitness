@@ -5,8 +5,8 @@ phases:
     commands:
       # install Node 12
       # install npm
-      - curl --silent --location https://rpm.nodesource.com/setup_12.x | sudo bash - 
-      - sudo yum -y install nodejs
+      - curl --silent --location https://rpm.nodesource.com/setup_12.x | bash - 
+      - yum -y install nodejs
   pre_build:
     commands:
       # install dependencies
