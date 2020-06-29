@@ -42,14 +42,6 @@ const ScheduleScreen = (props) => {
     if (error)
         return <SFError />;
 
-    /* const handleDownload = () => {
-        let element = document.createElement("a");
-        let file = new Blob([data.schedule.url], { type: "image/*"});
-        element.href = URL.createObjectURL(file);
-        element.download = "schedule.jpg";
-        element.click();
-    }; */
-
     const getInstructorString = (instructors) => {
         let result = "";
         for (let i = 0; i < instructors.length; i++){
@@ -98,7 +90,7 @@ const ScheduleScreen = (props) => {
             {data.getAllEvents.map( (event, index) =>
                 <div className="sf-event" key={index}>
                     <Row className="sf-home-row1">
-                        <h3 className="sf-home-header" style={{paddingTop:(index==0 ? ".5em" : "0em")}}>
+                        <h3 className="sf-home-header" style={{paddingTop:(index===0 ? ".5em" : "0em")}}>
                             <b>{event.name}</b>
                         </h3>
                     </Row>

@@ -45,7 +45,7 @@ const HomeScreen = (props) => {
         return <SFLoading />
     }
     if (error) {
-        return <SFError />
+        return <SFError error={error}/>
     }
 
     const handleAlertClick = () => {
