@@ -18,7 +18,6 @@ import AdminHomeScreen from './components/AdminHomeScreen';
 import AdminScheduleScreen from './components/AdminScheduleScreen';
 import AdminForgotPasswordScreen from './components/AdminForgotPasswordScreen';
 import AdminChangePasswordScreen from './components/AdminChangePasswordScreen';
-import AdminNotifyListScreen from './components/AdminNotifyListScreen';
 
 const client = new ApolloClient({ uri: "http://localhost:5000/graphql" });
 
@@ -32,7 +31,6 @@ ReactDOM.render(
           <Route path='/memberships' component={MembershipsScreen} />
           <PrivateRoute exact path='/admin' component={AdminHomeScreen} />
           <PrivateRoute path='/admin/schedule' component={AdminScheduleScreen} />
-          <PrivateRoute path='/admin/notify' component={AdminNotifyListScreen} />
           <UnPrivateRoute path='/admin/login' component={AdminLoginScreen} />
           <UnPrivateRoute path='/admin/forgot' component={AdminForgotPasswordScreen} />
           <UnPrivateRoute path='/admin/reset/:token' component={AdminChangePasswordScreen} />

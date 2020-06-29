@@ -14,7 +14,6 @@ const GraphQLDate = require('graphql-date');
 const PictureModel = require('../models/Picture');
 const EventModel = require('../models/Event');
 const AlertModel = require('../models/Alert');
-const NotificationModel = require('../models/Notification');
 
 require('dotenv').config();
 
@@ -87,20 +86,6 @@ const alertType = new GraphQLObjectType({
     }
 });
 
-const notificationType = new GraphQLObjectType({
-    name: "notificationType",
-    fields: function () {
-        return {
-            _id: {
-                type: GraphQLString
-            },
-            number: {
-                type: GraphQLString
-            }
-        }
-    }
-});
-
 const queryType = new GraphQLObjectType({
     name: "Query",
     fields: function () {
@@ -153,18 +138,6 @@ const queryType = new GraphQLObjectType({
                         return null;
                     }
                     return alerts;
-                }
-            },
-            getNotificationList: {
-                type: new GraphQLList(notificationType),
-                resolve: function () {
-                    const notifs = NotificationModel.find().exec();
-                    if (!notifs){
-                        return null;
-                    }
-                    else {
-                        return notifs;
-                    }
                 }
             }
         }

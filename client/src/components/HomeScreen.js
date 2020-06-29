@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
-import { Carousel, Row, Col, Image } from 'react-bootstrap';
+import { Carousel, Row, Col, Image, Button } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
 import { FaRunning } from 'react-icons/fa';
 import { GiWeightLiftingUp, GiMeditation } from 'react-icons/gi';
@@ -12,7 +12,6 @@ import SFCard from './SFCard';
 import SFAlert from './SFAlert';
 import SFLoading from './SFLoading';
 import SFError from './SFError';
-import SFFormPhone from './SFFormPhone';
 
 const GET_HOME = gql`
     query{
@@ -49,6 +48,10 @@ const HomeScreen = (props) => {
         return <SFError />
     }
 
+    const handleAlertClick = () => {
+        window.open("https://mobile-text-alerts.com/subscribe/SanterFitness", "_blank");
+    };
+
     return (
         <div>
             <SFNavbar admin={props.admin} />
@@ -73,7 +76,9 @@ const HomeScreen = (props) => {
                     <b>Sign up for Alerts and Notifications!</b>
                 </h4>
             </Row>
-            <SFFormPhone />
+            <Row className="sf-home-row1 d-flex justify-content-center">
+                <Button className="sf-home-button" variant="dark" size="lg" block onClick={handleAlertClick}>Sign Up</Button>
+            </Row>
             <Row className="sf-home-row2 d-flex justify-content-center" style={{padding: ".5em", textAlign:"center"}}>
                 <h4 className="sf-home-header">
                     <b>Our Goals</b>

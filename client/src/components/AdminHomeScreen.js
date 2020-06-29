@@ -139,10 +139,6 @@ const AdminHomeScreen = () => {
         history.push("/admin/schedule");
     }
 
-    const goToEditNotify = () => {
-        history.push('/admin/notify');
-    }
-
     const logOut = () => {
         auth.logout().then( (result) => {
             setUser(result.user);
@@ -159,9 +155,6 @@ const AdminHomeScreen = () => {
                     </Row>
                     <Row className="d-flex justify-content-end" style={{paddingBottom:".5em"}}>
                         <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditClass}>Edit Class Page</Button>
-                    </Row>
-                    <Row className="d-flex justify-content-end">
-                        <Button variant="info" size="sm" className="sf-admin-button" style={{marginTop:"1em", marginBottom:"-1em"}} onClick={goToEditNotify}>Edit Notify List</Button>
                     </Row>
                     <Row>
                         <Col className="d-flex justify-content-center">

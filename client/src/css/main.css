@@ -10919,6 +10919,11 @@ body {
   margin-right: 0em;
 }
 
+.sf-home-button {
+  margin: 2em;
+  width: 40%;
+}
+
 .sf-home-card {
   margin-top: 3em;
   margin-bottom: 0em;

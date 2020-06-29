@@ -46,11 +46,5 @@ export default {
     },
     requestTrial : (data) => {
         return axios.post('/api/trial', data).then(getResponse).catch(catchErrors);
-    },
-    addNumber : (number) => {
-        return axios.post('/api/add/notification', { number: number }).then(getResponse).catch(catchErrors);
-    },
-    getNumbers : () => {
-        return axios.get('/api/notifications').then(getResponse).catch(catchErrors);
     }
 }
