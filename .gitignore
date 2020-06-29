@@ -11,3 +11,7 @@
 
 /client/node_modules
 /node_modules
+
+# Build files
+
+/client/build

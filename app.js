@@ -16,15 +16,13 @@ mongoose.connect(process.env.MONGO_URL, { promiseLibrary: bluebird, useNewUrlPar
     .then(() => console.log('Successfully connected to database...'))
     .catch((err) => console.error(err));
 
-
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-const apiRouter = require('./routes/api');
-
 const app = express();
 
 app.get('env');
 
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const apiRouter = require('./routes/api');
 
 
 app.set('view engine', 'ejs');
@@ -35,6 +33,10 @@ if (process.env.NODE_ENV === 'development')
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
+
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+}
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -60,14 +62,6 @@ app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error');
 });
-
-if (process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
-    console.log("ENV: " + process.env.NODE_ENV);
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, '.', 'client', 'build', 'index.html'));
-    });
-}
 
 module.exports = app;
 
