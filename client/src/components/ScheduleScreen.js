@@ -98,7 +98,7 @@ const ScheduleScreen = (props) => {
             {data.getAllEvents.map( (event, index) =>
                 <div className="sf-event" key={index}>
                     <Row className="sf-home-row1">
-                        <h3 className="sf-home-header" style={{paddingTop:".75em"}}>
+                        <h3 className="sf-home-header" style={{paddingTop:(index==0 ? ".5em" : "0em")}}>
                             <b>{event.name}</b>
                         </h3>
                     </Row>
