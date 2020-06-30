@@ -13,9 +13,13 @@ phases:
     commands:
       # install dependencies
       - npm install
-      - npm install --prefix client
+
   post_build:
     commands:
       # build
       - NPM_CONFIG_PRODUCTION=false npm install --prefix client
       - npm run --prefix client build
+
+artifacts:
+    files:
+      - ./client/build/*
