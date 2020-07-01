@@ -16,8 +16,8 @@ phases:
   build:
     commands:
       # build static files
-      - mkdir -p client/node_modules
-      - npm install --production --prefix client
+      - mkdir -p ./client/node_modules
+      - npm install --prefix client --production
       - npm run build --prefix client
 
 artifacts:
