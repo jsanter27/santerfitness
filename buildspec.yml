@@ -10,9 +10,9 @@ phases:
       - apt install nodejs
       # install dependencies
       - npm install --production
-      - npm install --prefix client --production
+      - cd client && npm install --production
       # build static files
-      - npm run --prefix client build
+      - cd client && npm run build
 
 artifacts:
   files:
