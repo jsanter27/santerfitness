@@ -14,8 +14,6 @@ phases:
       # install dependencies
       - npm install --production
       - cd client && npm install --production && cd ..
-      # build static files
-      - cd client && npm run build && cd ..
   build:
     commands:
       # build static files
