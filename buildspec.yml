@@ -8,9 +8,16 @@ phases:
       - pip install --upgrade awscli
       - curl -sL https://deb.nodesource.com/setup_12.x | bash -
       - apt install nodejs
+
+  pre_build:
+    commands:
       # install dependencies
       - npm install --production
       - cd client && npm install --production && cd ..
+      # build static files
+      - cd client && npm run build && cd ..
+  build:
+    commands:
       # build static files
       - cd client && npm run build && cd ..
 
