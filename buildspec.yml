@@ -15,7 +15,7 @@ phases:
       - npm install --production
   build:
     commands:
-      # install client dependencies build static files
+      # install client dependencies and build static files
       - mkdir -p ./client/node_modules
       - npm install --prefix client --production
       - npm run build --prefix client
