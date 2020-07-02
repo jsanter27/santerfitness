@@ -171,7 +171,7 @@ const AdminHomeScreen = () => {
                                     key={slide.key}
                                     src={slide.url}
                                     alt={slide.key}
-                                    className="sf-admin-slide"
+                                    className="d-block w-100 sf-admin-slide"
                                     thumbnail
                                 />
                             </Row>

@@ -58,7 +58,7 @@ const HomeScreen = (props) => {
             {data.getAllAlerts.filter( (alert) => alert.isActive ).map((alert, index) => 
                 <SFAlert key={index} message={alert.message} isEmergency={alert.isEmergency} />
             )}
-            {data.getAllSlides ?
+            {data.getAllSlides !== null ?
                 <Carousel>
                     {data.getAllSlides.map((slide) => 
                         <Carousel.Item key={slide.key}>

@@ -11012,7 +11012,6 @@ body {
   border-width: .5em;
   border-radius: .5em;
   width: auto;
-  max-width: 100%;
   height: auto;
 }
 
@@ -11038,8 +11037,7 @@ body {
   margin-right: 2em;
   margin-top: .5em;
   margin-bottom: 1em;
-  width: 100%;
-  padding: 1em;
+  width: auto;
   height: auto;
 }
 

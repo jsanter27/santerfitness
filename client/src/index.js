@@ -18,9 +18,16 @@ import AdminHomeScreen from './components/AdminHomeScreen';
 import AdminScheduleScreen from './components/AdminScheduleScreen';
 import AdminForgotPasswordScreen from './components/AdminForgotPasswordScreen';
 import AdminChangePasswordScreen from './components/AdminChangePasswordScreen';
+import config from './config';
 
-//const client = new ApolloClient({ uri: "http://localhost:" + (process.env.PORT || "5000") + "/graphql" });
-const client = new ApolloClient({ uri: "http://prod.eba-pwbm3ckm.us-east-2.elasticbeanstalk.com/graphql"});
+var client;
+
+if (config && config.ENV === "development") {
+  client = new ApolloClient({ uri: "http://localhost:" + (process.env.PORT || "5000") + "/graphql" });
+}
+else {
+  client = new ApolloClient({ uri: "http://prod.eba-pwbm3ckm.us-east-2.elasticbeanstalk.com/graphql"});
+}
 
 ReactDOM.render(
   <ApolloProvider client={client}>

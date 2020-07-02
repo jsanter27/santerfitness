@@ -67,7 +67,7 @@ const ScheduleScreen = (props) => {
                 <Col className="d-flex justify-content-center">
                     {data.getSchedule ? 
                         <Image
-                            className="sf-schedule-img"
+                            className="d-block w-70 sf-schedule-img"
                             key={data.getSchedule.key}
                             src={data.getSchedule.url}
                             alt="Class Schedule"

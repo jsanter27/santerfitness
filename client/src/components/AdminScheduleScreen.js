@@ -179,7 +179,7 @@ const AdminScheduleScreen = () => {
                                     key={data.getSchedule.key}
                                     src={data.getSchedule.url}
                                     alt={data.getSchedule.key}
-                                    className="sf-admin-slide"
+                                    className="d-block w-100 sf-admin-slide"
                                     thumbnail
                                 />
                             </Row>
