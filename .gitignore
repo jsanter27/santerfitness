@@ -5,7 +5,7 @@
 # Environment variables
 
 .env
-/client/src/config.js
+/client/.env.client
 
 # Dependencies
 
