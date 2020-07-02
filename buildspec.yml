@@ -23,6 +23,7 @@ phases:
       - ls -la
       - ls client -la
       - mkdir client/TEST
+      - ls client -la
 
 artifacts:
   files:
