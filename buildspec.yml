@@ -12,12 +12,11 @@ phases:
   pre_build:
     commands:
       # install server dependencies
-      - npm install --production
-      - npm install --prefix client --production
+      - npm install
   build:
     commands:
       # install client dependencies and build static files
-      - mkdir -p ./client/node_modules && npm run build --prefix client
+      - npm install --prefix client && npm run build --prefix client
 
 artifacts:
   files:
