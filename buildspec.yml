@@ -20,7 +20,8 @@ phases:
 
   post_build:
     commands:
-      - ls
+      - ls -la
+      - ls client -la
 
 artifacts:
   files:
