@@ -13,10 +13,12 @@ phases:
     commands:
       # install server dependencies
       - npm install
+      # install client dependencies
+      - npm install --prefix client
   build:
     commands:
-      # install client dependencies and build static files
-      - npm install --prefix client && npm run build --prefix client
+      # build static files
+      - npm run build --prefix client
 
   post_build:
     commands:
@@ -28,6 +30,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  discard-paths: no
-  base-directory: '*'
       
