@@ -26,5 +26,6 @@ phases:
 artifacts:
   files:
     - '**/*'
+    - 'client/*'
 
       
