@@ -204,6 +204,9 @@ body {
   border-color: var(--sf-primary);
   border-width: .5em;
   border-radius: .5em;
+  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .sf-loading-text{
@@ -228,6 +231,9 @@ body {
   margin-right: 2em;
   margin-top: .5em;
   margin-bottom: 1em;
+  width: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 .sf-admin-button{
