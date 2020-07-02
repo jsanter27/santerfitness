@@ -11038,8 +11038,8 @@ body {
   margin-right: 2em;
   margin-top: .5em;
   margin-bottom: 1em;
-  width: auto;
-  max-width: 100%;
+  width: 100%;
+  padding: 1em;
   height: auto;
 }
 
