@@ -18,6 +18,10 @@ phases:
       # install client dependencies and build static files
       - npm install --prefix client && npm run build --prefix client
 
+  post_build:
+    commands:
+      - ls
+
 artifacts:
   files:
     - '**/*'
