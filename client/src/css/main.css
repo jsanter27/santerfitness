@@ -11011,6 +11011,7 @@ body {
   border-color: var(--sf-primary);
   border-width: .5em;
   border-radius: .5em;
+  width: auto;
   max-width: 100%;
   height: auto;
 }
