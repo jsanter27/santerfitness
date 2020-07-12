@@ -196,16 +196,16 @@ body {
 
 .sf-schedule-img{
   padding: 1em;
-  /*
   margin-top: 2em;
   margin-left: 1em;
   margin-right: 1em;
   margin-bottom: 2em;
-  */
   border-style: solid;
   border-color: var(--sf-primary);
   border-width: .5em;
   border-radius: .5em;
+  max-width: 100%;
+  height: auto;
 }
 
 .sf-loading-text{
