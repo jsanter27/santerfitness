@@ -65,23 +65,21 @@ const ScheduleScreen = (props) => {
             </Row>
             <Row className="sf-home-row1">
                 <Col className="d-flex justify-content-center">
-                    {data.getSchedule ? 
-                        <Image
-                            className="d-block w-70 sf-schedule-img"
-                            key={data.getSchedule.key}
-                            src={data.getSchedule.url}
-                            alt="Class Schedule"
-                        /> 
-                    : 
-                        <h5 className="sf-member-header">Schedule not found</h5>
-                    }
+                    <div className="d-block w-70 sf-schedule-img">
+                        {data.getSchedule ? 
+                            /* <Image
+                                className="d-block w-70 sf-schedule-img"
+                                key={data.getSchedule.key}
+                                src={data.getSchedule.url}
+                                alt="Class Schedule"
+                            /> */
+                            <div key={data.getSchedule.key} className="d-block w-70 sf-schedule-img" style={{backgroundImage:`url(${data.getSchedule.url})`, backgroundSize:"cover"}}/>
+                        : 
+                            null
+                        }
+                    </div>
                 </Col>
             </Row>
-            {/* <Row className="sf-home-row1">
-                <Col className="d-flex justify-content-center">
-                    <Button className="sf-schedule-button" block size="lg" variant="dark" onClick={handleDownload}>Download Schedule</Button>
-                </Col>
-            </Row> */}
             <Row className="sf-home-row2">
                 <Col className="d-flex justify-content-center">
                     <h3 className="sf-member-header"><b>Class Info</b></h3>    
