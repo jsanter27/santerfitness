@@ -65,7 +65,7 @@ const ScheduleScreen = (props) => {
             </Row>
             <Row className="sf-home-row1">
                 <Col className="d-flex justify-content-center">
-                    <div style={{width:"70%", height:"auto"}}>
+                    <div style={{width:"70%", height:"320px"}}>
                         {data.getSchedule ? 
                             /* <Image
                                 className="d-block w-70 sf-schedule-img"
@@ -73,7 +73,7 @@ const ScheduleScreen = (props) => {
                                 src={data.getSchedule.url}
                                 alt="Class Schedule"
                             /> */
-                            <div key={data.getSchedule.key} className="sf-schedule-img" style={{backgroundImage:`url(${data.getSchedule.url})`, backgroundSize:"cover"}}/>
+                            <div key={data.getSchedule.key} className="sf-schedule-img" style={{backgroundImage:`url(${data.getSchedule.url})`, backgroundSize:"cover", maxWidth:"100%", height:"auto"}}/>
                         : 
                             null
                         }
