@@ -73,7 +73,7 @@ const ScheduleScreen = (props) => {
                                 src={data.getSchedule.url}
                                 alt="Class Schedule"
                             /> */
-                            <div key={data.getSchedule.key} className="sf-schedule-img" style={{backgroundImage:`url(${data.getSchedule.url})`, backgroundSize:"cover", maxWidth:"100%", height:"auto"}}/>
+                            <div key={data.getSchedule.key} className="sf-schedule-img" style={{backgroundImage:`url(${data.getSchedule.url})`, backgroundSize:"cover", maxWidth:"100%", height:"100%"}}/>
                         : 
                             null
                         }
