@@ -65,7 +65,7 @@ const ScheduleScreen = (props) => {
             </Row>
             <Row className="sf-home-row1">
                 <Col className="d-flex justify-content-center">
-                    <div style={{width:"70%", height:"320px"}}>
+                    <div style={{width:"70%", height:"auto"}}>
                         {data.getSchedule ? 
                             /* <Image
                                 className="d-block w-70 sf-schedule-img"
