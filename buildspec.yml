@@ -22,10 +22,7 @@ phases:
 
   post_build:
     commands:
-      - ls -la
-      - ls client -la
-      - mkdir client/TEST
-      - ls client -la
+      - chmod -R 755 client/build
 
 artifacts:
   files:
