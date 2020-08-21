@@ -205,8 +205,9 @@ body {
     border-color: var(--sf-primary);
     border-width: .5em;
     border-radius: .5em;
-    width: 512px;
-    height: 384px;
+    width: auto;
+    max-width: 20%;
+    height: auto;
   }
 }
 
