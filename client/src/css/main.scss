@@ -194,22 +194,7 @@ body {
   height: auto;
 }
 
-.sf-schedule-img{
-  padding: 1em;
-  margin-top: 2em;
-  margin-left: 1em;
-  margin-right: 1em;
-  margin-bottom: 2em;
-  border-style: solid;
-  border-color: var(--sf-primary);
-  border-width: .5em;
-  border-radius: .5em;
-  width: auto;
-  max-width: 100%;
-  height: auto;
-}
-
-@media only screen and (max-width: 600px) {
+@media (min-width: 320px) {
   .sf-schedule-img{
     padding: 1em;
     margin-top: 2em;
@@ -222,6 +207,23 @@ body {
     border-radius: .5em;
     width: 512px;
     height: 384px;
+  }
+}
+
+@media (min-width: 481px){
+  .sf-schedule-img{
+    padding: 1em;
+    margin-top: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 2em;
+    border-style: solid;
+    border-color: var(--sf-primary);
+    border-width: .5em;
+    border-radius: .5em;
+    width: auto;
+    max-width: 100%;
+    height: auto;
   }
 }
 
