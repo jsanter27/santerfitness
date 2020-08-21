@@ -59,7 +59,7 @@ const SFFooter = () => {
                                 <AiFillPhone/><br/>
                                 (845) 496-9188<br/><br/>
                                 <GrMail /><br/>
-                                info@santerfitness.com<br/>
+                                info.santerfitness@gmail.com<br/>
                             </p>
                         </Row>
                         <Row className="sf-footer-title2 d-flex justify-content-start">

@@ -16,15 +16,20 @@ const MembershipsScreen = (props) => {
                     <h3 className="sf-member-header"><b>Memberships</b></h3>    
                 </Col>
             </Row>
-            <Row className="sf-home-row1">
+            <Row xs={1} sm={2} className="sf-home-row1">
                 <Col className="d-flex justify-content-center">
                     <SFCard
                         title="Standard"
                         items={[
-                            "Free Group Exercise",
-                            "Free Private Fitness Orientation",
-                            "Free Childcare",
-                            "Nutritional Counselling"
+                            "$39.95/month",
+                            "$59 Annual Maintenance",
+                            "All Group Fitness Classes",
+                            "Special Guest Privileges",
+                            "Complete Use of Gym Facilities",
+                            "Fitness Consultation with a Certified Personal Trainer",
+                            "No Commit, No Hassle Membership",
+                            "No Contract Obligation",
+                            "Cancel At Any Time with No Fees"
                         ]}
                         style={{marginBottom:"0em"}}
                     />
@@ -33,10 +38,53 @@ const MembershipsScreen = (props) => {
                     <SFCard
                         title="Student"
                         items={[
-                            "Free Group Exercise",
-                            "Free Weights",
-                            "Seasonal Specials",
-                            "Guest Passes",
+                            "$21.00/month",
+                            "$19.99 Sign-Up Fee",
+                            "19 YEARS OLD AND UNDER",
+                            "MUST HAVE WASHINGTONVILLE STUDENT ID",
+                            "No Commit, No Hassle Membership",
+                            "No Contract Obligation",
+                            "Cancel At Any Time with No Fees"
+                        ]}
+                        style={{marginBottom:"0em"}}
+                    />
+                </Col>
+            </Row>
+            <Row xs={1} sm={2} className="sf-home-row1">
+                <Col className="d-flex justify-content-center">
+                    <SFCard
+                        title="Family Plan 1"
+                        items={[
+                            "2 Family Members",
+                            "$68.99/month",
+                            "$59 Annual Maintenence",
+                            "Free for Family Members Under 16 Accompanied by Adult",
+                            "All Group Fitness Classes",
+                            "Special Guest Privileges",
+                            "Complete Use of Gym Facilities",
+                            "Fitness Consultation with a Certified Personal Trainer",
+                            "No Commit, No Hassle Membership",
+                            "No Contract Obligation",
+                            "Cancel At Any Time with No Fees"
+                        ]}
+                        style={{marginBottom:"0em"}}
+                    />
+                </Col>
+                <Col className="d-flex justify-content-center">
+                    <SFCard
+                        title="Family Plan 2"
+                        items={[
+                            "Up to 4 Family Members",
+                            "$79.99/month",
+                            "$59 Annual Maintenence",
+                            "Free for Family Members Under 16 Accompanied by Adult",
+                            "All Group Fitness Classes",
+                            "Special Guest Privileges",
+                            "Complete Use of Gym Facilities",
+                            "Fitness Consultation with a Certified Personal Trainer",
+                            "No Commit, No Hassle Membership",
+                            "No Contract Obligation",
+                            "Cancel At Any Time with No Fees"
                         ]}
                         style={{marginBottom:"0em"}}
                     />
@@ -45,23 +93,10 @@ const MembershipsScreen = (props) => {
             <Row className="sf-home-row1" style={{paddingBottom:"3em"}}>
                 <Col className="d-flex justify-content-center">
                     <SFCard
-                        title="Family (2 members)"
+                        title="Daily Fee (No Membership)"
                         items={[
-                            "Free Group Exercise",
-                            "Free Private Fitness Orientation",
-                            "Free Childcare",
-                            "Fit Kid Programs Offered"
-                        ]} 
-                    />
-                </Col>
-                <Col className="d-flex justify-content-center">
-                    <SFCard
-                        title="Family (4 members)"
-                        items={[
-                            "Free Group Exercise",
-                            "Free Private Fitness Orientation",
-                            "Free Childcare",
-                            "Fit Kid Programs Offered"
+                            "$15.00 per day for Full Gym Access",
+                            "$10.00 for Group Class ONLY"
                         ]} 
                     />
                 </Col>
