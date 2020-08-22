@@ -137,16 +137,16 @@ const HomeScreen = (props) => {
                 </IconContext.Provider>
             </Row>
             
-            <Row className="sf-home-row1">
+            <Row className="sf-home-row2 d-flex justify-content-center">
                 <h3 className="sf-home-header">
                     <b>About</b>
                 </h3>
             </Row>
-            <Row className="sf-home-row1">
+            <Row className="sf-home-row1" style={{paddingTop:"1em"}}>
                 <p className="sf-home-body">
                     At Santer Fitness you can expect a full service, community-based health club focused on providing our
                     members with best in class fitness and performance enhancement programs and services. We offer
-                    results-driven personal training programs, and innovative group exercise programming.
+                    results-driven personal training programs, and innovative group exercise programming. Featuring:
                     <br/><br/>
                 </p>
             </Row>

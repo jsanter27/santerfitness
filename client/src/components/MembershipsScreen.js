@@ -38,8 +38,8 @@ const MembershipsScreen = (props) => {
                     <SFCard
                         title="Student"
                         items={[
-                            "$21.00/month",
-                            "$19.99 Sign-Up Fee",
+                            "$25.00/month",
+                            "$10.00 Sign-Up Fee",
                             "19 YEARS OLD AND UNDER",
                             "MUST HAVE WASHINGTONVILLE STUDENT ID",
                             "No Commit, No Hassle Membership",
