@@ -106,7 +106,7 @@ router.post('/add/event', authentication, (req, res) => {
 router.get('/remove/slide/:key', authentication, (req, res) => {
     const { key } = req.params;
     
-    Picture.findOneAndRemove({ key }, (err, removedSlide) => {
+    Picture.find({ key }).remove( (err, removedSlide) => {
         if (err) {
             res.status(500).json({message : {msgBody : "Database error", msgError: true}});
         }
@@ -124,10 +124,29 @@ router.get('/remove/slide/:key', authentication, (req, res) => {
             });
         }
     });
+
+    /* Picture.findOneAndRemove({ key }, (err, removedSlide) => {
+        if (err) {
+            res.status(500).json({message : {msgBody : "Database error", msgError: true}});
+        }
+        else if (!removedSlide) {
+            res.status(400).json({message : {msgBody : "Slide not found in database", msgError: true}});
+        }
+        else {
+            s3.deleteObject({Bucket: process.env.S3_BUCKET_NAME, Key: removedSlide.key}, (err, data) => {
+                if (err){
+                    res.status(500).json({message : {msgBody : "Cloud error", msgError: true}});
+                }
+                else {
+                    res.status(201).json({message : {msgBody : "Slide successfully deleted", msgError: false}, data : removedSlide});
+                }
+            });
+        }
+    }); */
 });
 
 router.get('/remove/schedule', authentication, (req, res) => {
-    Picture.findOneAndRemove({ isSchedule: true }, (err, removedSchedule) => {
+    Picture.find({ isSchedule: true }).remove( (err, removedSchedule) => {
         if (err) {
             res.status(500).json({message : {msgBody : "Database error", msgError: true}});
         }
@@ -145,12 +164,30 @@ router.get('/remove/schedule', authentication, (req, res) => {
             });
         }
     });
+    /* Picture.findOneAndRemove({ isSchedule: true }, (err, removedSchedule) => {
+        if (err) {
+            res.status(500).json({message : {msgBody : "Database error", msgError: true}});
+        }
+        else if (!removedSchedule) {
+            res.status(400).json({message : {msgBody : "Schedule not found in database", msgError: true}});
+        }
+        else {
+            s3.deleteObject({Bucket: process.env.S3_BUCKET_NAME, Key: removedSchedule.key}, (err, data) => {
+                if (err){
+                    res.status(500).json({message : {msgBody : "Cloud error", msgError: true}});
+                }
+                else {
+                    res.status(201).json({message : {msgBody : "Schedule successfully deleted", msgError: false}, data : removedSchedule});
+                }
+            });
+        }
+    }); */
 });
 
 router.get('/remove/alert/:id', authentication, (req, res) => {
     const { id } = req.params;
 
-    Alert.findByIdAndRemove(id, (err, removedAlert) => {
+    Alert.findById(id).remove( (err, removedAlert) => {
         if (err) {
             res.status(500).json({message : {msgBody : "Database error", msgError: true}});
         }
@@ -161,12 +198,24 @@ router.get('/remove/alert/:id', authentication, (req, res) => {
             res.status(201).json({message : {msgBody : "Alert successfully deleted", msgError: false}, data : removedAlert});
         }
     });
+    /* 
+    Alert.findByIdAndRemove(id, (err, removedAlert) => {
+        if (err) {
+            res.status(500).json({message : {msgBody : "Database error", msgError: true}});
+        }
+        else if (!removedAlert) {
+            res.status(400).json({message : {msgBody : "Alert not found in database", msgError: true}});
+        }
+        else {
+            res.status(201).json({message : {msgBody : "Alert successfully deleted", msgError: false}, data : removedAlert});
+        }
+    }); */
 });
 
 router.get('/remove/event/:id', authentication, (req, res) => {
     const { id } = req.params;
 
-    Event.findByIdAndRemove(id, (err, removedEvent) => {
+    Event.findById(id).remove( (err, removedEvent) => {
         if (err) {
             res.status(500).json({message : {msgBody : "Database error", msgError: true}});
         }
@@ -177,6 +226,17 @@ router.get('/remove/event/:id', authentication, (req, res) => {
             res.status(201).json({message : {msgBody : "Event successfully deleted", msgError: false}, data : removedEvent});
         }
     });
+    /* Event.findByIdAndRemove(id, (err, removedEvent) => {
+        if (err) {
+            res.status(500).json({message : {msgBody : "Database error", msgError: true}});
+        }
+        else if (!removedEvent) {
+            res.status(400).json({message : {msgBody : "Event not found in database", msgError: true}});
+        }
+        else {
+            res.status(201).json({message : {msgBody : "Event successfully deleted", msgError: false}, data : removedEvent});
+        }
+    }); */
 });
 
 router.post('/update/alert/:id', authentication, (req, res) => {

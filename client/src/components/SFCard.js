@@ -6,6 +6,7 @@ const SFCard = (props) => {
     let Icon = props.icon;
     let title = props.title;
     let items = props.items;
+    let covid = props.covid;
 
     let style=null;
     if (props.style)
@@ -13,7 +14,7 @@ const SFCard = (props) => {
     const renderIcon = () => {
         if (Icon){
             return (
-                <Card.Header className="sf-home-card-header"><Icon /></Card.Header>
+                <Card.Header className={covid ? "sf-covid-card-header" : "sf-home-card-header"}><Icon /></Card.Header>
             );
         }
     };
@@ -21,7 +22,7 @@ const SFCard = (props) => {
     const renderTitle = () => {
         if (title){
             return (
-                <Card.Body className="sf-home-card-body">
+                <Card.Body className={covid ? "sf-covid-card-body" : "sf-home-card-body"}>
                     <Card.Title className="sf-home-card-title">
     <                   b>{title}</b>
                     </Card.Title>

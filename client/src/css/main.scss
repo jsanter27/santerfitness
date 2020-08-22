@@ -15,6 +15,7 @@ $body-color: "#d4dde3";
   --sf-secondary: #829aab;
   --sf-light: #58f258;
   --sf-dark: #184166;
+  --sf-warning: #ffc107;
 }
 
 body {
@@ -111,6 +112,12 @@ body {
   margin-right: 0em;
 }
 
+.sf-covid-row{
+  background-color: var(--sf-warning);
+  margin-left: 0em;
+  margin-right: 0em;
+}
+
 .sf-home-button{
   margin: 1em;
   width: 40%;
@@ -132,8 +139,19 @@ body {
   border-width: 0em;
 }
 
+.sf-covid-card-header{
+  text-align: center;
+  background-color: var(--sf-warning);
+  border-color: var(--sf-secondary);
+  border-width: 0em;
+}
+
 .sf-home-card-body{
   background-color: var(--sf-primary);
+}
+
+.sf-covid-card-body{
+  background-color: var(--sf-warning);
 }
 
 .sf-home-card-title{

@@ -3,8 +3,7 @@ import gql from 'graphql-tag';
 import { useQuery } from 'react-apollo-hooks';
 import { Carousel, Row, Col, Image, Button } from 'react-bootstrap';
 import { IconContext } from 'react-icons';
-import { FaRunning } from 'react-icons/fa';
-import { GiWeightLiftingUp, GiMeditation } from 'react-icons/gi';
+import { FaDoorOpen, FaRulerHorizontal, FaDumbbell, FaSprayCan } from 'react-icons/fa';
 
 import SFNavbar from './SFNavbar';
 import SFFooter from './SFFooter';
@@ -79,53 +78,89 @@ const HomeScreen = (props) => {
             <Row className="sf-home-row1 d-flex justify-content-center">
                 <Button className="sf-home-button" variant="dark" size="lg" block onClick={handleAlertClick}>Sign Up</Button>
             </Row>
-            <Row className="sf-home-row2 d-flex justify-content-center" style={{padding: ".5em", textAlign:"center"}}>
+            <Row className="sf-covid-row d-flex justify-content-center" style={{padding: ".5em", textAlign:"center"}}>
                 <h4 className="sf-home-header">
-                    <b>Our Goals</b>
+                    <b>COVID-19 GUIDELINES</b>
                 </h4>
             </Row>
-            <Row className="sf-home-row1" xs={1} sm={3} style={{paddingBottom:"2em"}}>
+            <Row className="sf-home-row1" xs={1} md={4} style={{paddingBottom:"2em"}}>
                 <IconContext.Provider value={{className:"fitness-icons", size:64}}>
                     <Col className="d-flex justify-content-center">
                         <SFCard
-                            icon={FaRunning}
-                            title="Endurance"
+                            icon={FaDoorOpen}
+                            title="Entry/Sign In"
                             items={[
-                                "Placeholder 1", 
-                                "Placeholder 2"
+                                "Masks must ALWAYS be worn by EVERYONE", 
+                                "33% occupancy limit",
+                                "Required sign-in with contact info and health pre-screening form"
                             ]}
+                            covid
                         />
                     </Col>
                     <Col className="d-flex justify-content-center">
                         <SFCard
-                            icon={GiMeditation}
-                            title="Health"
+                            icon={FaRulerHorizontal}
+                            title="Distancing"
                             items={[
-                                "Placeholder 1", 
-                                "Placeholder 2"
+                                "6 feet of separation at ALL times", 
+                                "Signs and reminders will be posted throughout facility",
+                                "Some equipment may be clearly marked out of use for cleaning and distancing purposes"
                             ]}
+                            covid
                         />
                     </Col>
                     <Col className="d-flex justify-content-center">
                         <SFCard
-                            icon={GiWeightLiftingUp}
-                            title="Strength"
+                            icon={FaDumbbell}
+                            title="Classes"
                             items={[
-                                "Placeholder 1", 
-                                "Placeholder 2"
+                                "All classes by reservation only, sign up at front desk", 
+                                "Capacities will be capped to ensure maximum social distancing",
+                                "Additional time for cleaning and disinfection in between classes",
+                                "Childcare temporarily CLOSED"
                             ]}
+                            covid
+                        />
+                    </Col>
+                    <Col className="d-flex justify-content-center">
+                        <SFCard
+                            icon={FaSprayCan}
+                            title="Cleaning/Hygiene"
+                            items={[
+                                "Additional stations with hand sanitizer and medical-grade supplies for wiping down equipment after use", 
+                                "Shared equipment must be cleaned after every use",
+                                "Staff will clean and disinfect restrooms hourly and equipment in between uses"
+                            ]}
+                            covid
                         />
                     </Col>
                 </IconContext.Provider>
             </Row>
+            
             <Row className="sf-home-row1">
                 <h3 className="sf-home-header">
-                    <b>Santer Fitness</b>
+                    <b>About</b>
                 </h3>
             </Row>
             <Row className="sf-home-row1">
                 <p className="sf-home-body">
-                    This is the about section.
+                    At Santer Fitness you can expect a full service, community-based health club focused on providing our
+                    members with best in class fitness and performance enhancement programs and services. We offer
+                    results-driven personal training programs, and innovative group exercise programming.
+                    <br/><br/>
+                </p>
+            </Row>
+            <Row className="sf-home-row1 d-flex justify-content-center">
+                <p className="sf-home-body" style={{textAlign:"center"}}>
+                    <b>Full Group Exercise Classes with certified Instructors<br/><br/>
+                    All NEW Precor ® and Hammer Strength® Equipment<br/><br/>
+                    Tons of Cardio with Personal HD 17″ LCD TV Screens<br/><br/>
+                    FREE 1 hr Private Assessment &amp; Fitness Consultation<br/><br/>
+                    FREE Child Care Available<br/><br/>
+                    Great Shake Bar and Café<br/><br/>
+                    Certified Personal Training Available<br/><br/>
+                    Silver Sneakers programs<br/><br/>
+                    Full Dumbbells sets up to 150 lbs<br/><br/></b>
                 </p>
             </Row>
             <SFFooter />
