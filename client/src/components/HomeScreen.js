@@ -151,8 +151,8 @@ const HomeScreen = (props) => {
                 </p>
             </Row>
             <Row className="sf-home-row1 d-flex justify-content-center">
-                <p className="sf-home-body" style={{textAlign:"center"}}>
-                    <b>Full Group Exercise Classes with certified Instructors<br/><br/>
+                <p className="sf-home-body" style={{textAlign:"center", marginLeft:"0em"}}>
+                    <b>Full Group Exercise Classes with Certified Instructors<br/><br/>
                     All NEW Precor ® and Hammer Strength® Equipment<br/><br/>
                     Tons of Cardio with Personal HD 17″ LCD TV Screens<br/><br/>
                     FREE 1 hr Private Assessment &amp; Fitness Consultation<br/><br/>
@@ -160,7 +160,7 @@ const HomeScreen = (props) => {
                     Great Shake Bar and Café<br/><br/>
                     Certified Personal Training Available<br/><br/>
                     Silver Sneakers programs<br/><br/>
-                    Full Dumbbells sets up to 150 lbs<br/><br/></b>
+                    Full Dumbbells Sets up to 150 lbs<br/><br/></b>
                 </p>
             </Row>
             <SFFooter />
