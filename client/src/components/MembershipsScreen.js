@@ -101,12 +101,12 @@ const MembershipsScreen = (props) => {
                     />
                 </Col>
             </Row>
-            <Row className="sf-home-row2">
+            {/* <Row className="sf-home-row2">
                 <Col className="d-flex justify-content-center">
                     <h3 className="sf-member-header"><b>Free 7 Day Trial</b></h3>    
                 </Col>
             </Row>
-            <SFForm />
+            <SFForm /> */}
             <SFFooter />
         </div>
     );
