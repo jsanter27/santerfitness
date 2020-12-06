@@ -22,7 +22,7 @@ const SFFooter = () => {
                             <Col className="d-flex justify-content-start">
                                 <ListGroup className="sf-hours-list">
                                     <ListGroup.Item className="sf-hours-list-item">
-                                        <b>Sunday</b><br/>7:00am - 5:00pm
+                                        <b>Sunday</b><br/>8:00am - 5:00pm
                                     </ListGroup.Item>
                                     <ListGroup.Item className="sf-hours-list-item">
                                         <b>Monday</b><br/>5:00am - 10:00pm
@@ -40,7 +40,7 @@ const SFFooter = () => {
                                         <b>Friday</b><br/>5:00am - 9:00pm
                                     </ListGroup.Item>
                                     <ListGroup.Item className="sf-hours-list-item">
-                                        <b>Saturday</b><br/>7:00am - 7:00pm
+                                        <b>Saturday</b><br/>8:00am - 7:00pm
                                     </ListGroup.Item>
                                 </ListGroup>
                             </Col>
