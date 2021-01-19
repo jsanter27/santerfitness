@@ -21,7 +21,7 @@ const MembershipsScreen = (props) => {
                     <SFCard
                         title="Standard"
                         items={[
-                            "$39.95/month",
+                            "$39.99/month",
                             "$59 Annual Maintenance",
                             "All Group Fitness Classes",
                             "Special Guest Privileges",
@@ -38,10 +38,9 @@ const MembershipsScreen = (props) => {
                     <SFCard
                         title="Student"
                         items={[
-                            "$25.00/month",
+                            "$24.99/month (HIGH SCHOOL)",
+                            "$29.99/month (COLLEGE)",
                             "$10.00 Sign-Up Fee",
-                            "19 YEARS OLD AND UNDER",
-                            "MUST HAVE WASHINGTONVILLE STUDENT ID",
                             "No Commit, No Hassle Membership",
                             "No Contract Obligation",
                             "Cancel At Any Time with No Fees"
@@ -56,7 +55,7 @@ const MembershipsScreen = (props) => {
                         title="Family Plan 1"
                         items={[
                             "2 Family Members",
-                            "$68.99/month",
+                            "$72.99/month",
                             "$59 Annual Maintenence",
                             "Free for Family Members Under 16 Accompanied by Adult",
                             "All Group Fitness Classes",
@@ -75,7 +74,7 @@ const MembershipsScreen = (props) => {
                         title="Family Plan 2"
                         items={[
                             "Up to 4 Family Members",
-                            "$79.99/month",
+                            "$84.99/month",
                             "$59 Annual Maintenence",
                             "Free for Family Members Under 16 Accompanied by Adult",
                             "All Group Fitness Classes",
