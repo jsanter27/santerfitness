@@ -78,6 +78,7 @@ const HomeScreen = (props) => {
             <Row className="sf-home-row1 d-flex justify-content-center">
                 <Button className="sf-home-button" variant="dark" size="lg" block onClick={handleAlertClick}>Sign Up</Button>
             </Row>
+            {/* COVID GUIDELINES 
             <Row className="sf-covid-row d-flex justify-content-center" style={{padding: ".5em", textAlign:"center"}}>
                 <h4 className="sf-home-header">
                     <b>COVID-19 GUIDELINES</b>
@@ -136,7 +137,7 @@ const HomeScreen = (props) => {
                     </Col>
                 </IconContext.Provider>
             </Row>
-            
+            */}
             <Row className="sf-home-row2 d-flex justify-content-center">
                 <h3 className="sf-home-header">
                     <b>About</b>
